@@ -282,7 +282,7 @@ export default function PortfolioPage() {
                     transition={{ duration: 0.5 }}
                     layout
                     className="group cursor-pointer"
-                    onClick={() => setSelectedProject(item)}
+                    // onClick={() => setSelectedProject(item)}
                   >
                     <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-border/50 hover:border-primary/50">
                       {/* Project Image */}
@@ -421,7 +421,7 @@ export default function PortfolioPage() {
                 Ready to create your success story?
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-                Let's work together to bring your vision to life and create
+                Let&apos;s work together to bring your vision to life and create
                 something that stands out in your industry.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

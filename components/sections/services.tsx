@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 import { Code, Palette, Rocket, Zap, Globe, Smartphone } from "lucide-react";
 
 import {
@@ -113,7 +113,7 @@ const cardVariants = {
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: easeOut,
     },
   },
 };
@@ -141,7 +141,7 @@ export function Services() {
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             We offer comprehensive digital solutions that help businesses thrive
-            in the modern world. From concept to launch, we're your partner in
+            in the modern world. From concept to launch, we&apos;re your partner in
             digital success.
           </p>
         </motion.div>
@@ -230,7 +230,7 @@ export function Services() {
             Ready to transform your digital presence?
           </h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and create something amazing together.
+            Let&apos;s discuss your project and create something amazing together.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <button className="gradient-primary text-white px-8 py-4 rounded-lg font-medium hover:shadow-lg transition-shadow animate-pulse-glow">

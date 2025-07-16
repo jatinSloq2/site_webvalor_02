@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, easeOut } from "framer-motion";
 import { ExternalLink, Github, Eye } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -105,7 +105,7 @@ const itemVariants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: "easeOut",
+      ease:easeOut,
     },
   },
   exit: {
@@ -270,7 +270,7 @@ export function Portfolio() {
             Have a project in mind?
           </h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Let's collaborate and bring your vision to life with our expertise
+            Let&apos;s collaborate and bring your vision to life with our expertise
             and creativity.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

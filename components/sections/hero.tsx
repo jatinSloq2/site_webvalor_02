@@ -1,34 +1,27 @@
 "use client";
 
-import * as React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import dynamic from "next/dynamic";
 
-import { Button } from "@/components/ui/button";
 import { ScrollCue } from "@/components/animations/scroll-cue";
-
-// Dynamically import 3D blob to avoid SSR issues
-const ThreeDBlob = dynamic(
-  () => import("@/components/sections/3d-blob").then((mod) => mod.ThreeDBlob),
-  { ssr: false },
-);
+import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
+import { AnimatedButton } from "../layout/animated-button";
 
 const textVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.6 },
   },
 };
 
-const staggerContainer = {
+export const staggerContainer = {
+  hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.3,
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
   },
 };
@@ -60,15 +53,49 @@ export function Hero() {
         animate="visible"
         className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto"
       >
-        <motion.div variants={textVariants}>
-          <h1 className="font-brand text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            <span className="block">Creative</span>
-            <span className="block gradient-text">Web Agency</span>
-            <span className="block font-serif font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2">
-              that brings ideas to life
-            </span>
-          </h1>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 text-primary text-sm font-medium"
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          >
+            <Sparkles className="w-4 h-4" />
+          </motion.div>
+          Premium Web Development Agency
         </motion.div>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+          className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-tight mt-5"
+        >
+          We Build{" "}
+          <motion.span
+            className="gradient-text inline-block"
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            Confident
+          </motion.span>
+          <br />
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+          >
+            Websites.
+          </motion.span>
+        </motion.h1>
 
         <motion.p
           variants={textVariants}
@@ -83,12 +110,12 @@ export function Hero() {
           variants={textVariants}
           className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Button
+          <AnimatedButton
             size="lg"
             className="gradient-primary text-white hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse-glow px-8 py-4 text-lg"
           >
             Start Your Project
-          </Button>
+          </AnimatedButton>
           <Button
             variant="outline"
             size="lg"

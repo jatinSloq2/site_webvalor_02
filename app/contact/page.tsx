@@ -132,7 +132,7 @@ export default function ContactPage() {
                 <span className="block gradient-text">amazing together</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Ready to bring your vision to life? We'd love to hear about your
+                Ready to bring your vision to life? We&apos;d love to hear about your
                 project and discuss how we can help you achieve your goals.
               </p>
             </motion.div>
@@ -154,7 +154,7 @@ export default function ContactPage() {
                   Contact Information
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  We're here to help and answer any questions you might have. We
+                  We&apos;re here to help and answer any questions you might have. We
                   look forward to hearing from you.
                 </p>
 
@@ -217,7 +217,7 @@ export default function ContactPage() {
                       Start Your Project
                     </CardTitle>
                     <CardDescription>
-                      Fill out the form below and we'll get back to you within
+                      Fill out the form below and we&apos;ll get back to you within
                       24 hours.
                     </CardDescription>
                   </CardHeader>
@@ -233,7 +233,7 @@ export default function ContactPage() {
                           Thank you!
                         </h3>
                         <p className="text-muted-foreground">
-                          We've received your message and will get back to you
+                          We&apos;ve received your message and will get back to you
                           soon.
                         </p>
                       </motion.div>
@@ -294,7 +294,7 @@ export default function ContactPage() {
                                   />
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                  <p>We'll use this to get back to you</p>
+                                  <p>We&apos;ll use this to get back to you</p>
                                 </TooltipContent>
                               </Tooltip>
                               {errors.email && (

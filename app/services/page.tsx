@@ -116,7 +116,7 @@ const services = [
     shortDescription:
       "Lightning-fast websites that rank well and convert visitors into customers.",
     longDescription:
-      "We optimize your website's performance to ensure fast loading times, better search engine rankings, and improved user experience. Our optimization strategies focus on speed, SEO, and conversion rates.",
+      "We optimize your website&apos;s performance to ensure fast loading times, better search engine rankings, and improved user experience. Our optimization strategies focus on speed, SEO, and conversion rates.",
     features: [
       "Page Speed Optimization",
       "Core Web Vitals Improvement",
@@ -305,7 +305,7 @@ export default function ServicesPage() {
                               {/* Features */}
                               <div>
                                 <h4 className="font-semibold mb-3">
-                                  What's Included:
+                                  What&apos;s Included:
                                 </h4>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                   {service.features.map(
@@ -449,7 +449,7 @@ export default function ServicesPage() {
                 Ready to get started?
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-                Let's discuss your project and create a custom solution that
+                Let&apos;s discuss your project and create a custom solution that
                 meets your needs and exceeds your expectations.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
