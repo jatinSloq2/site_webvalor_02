@@ -155,67 +155,90 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Timeline Section */}
-        <section className="py-24 bg-muted/20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
-                Our Journey
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                From a small startup to an award-winning agency, here&apos;s how
-                we&apos;ve grown.
-              </p>
-            </motion.div>
+       {/* Timeline Section */}
+<section className="py-24 bg-muted/20 relative">
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
+        Our Journey
+      </h2>
+      <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        From a small startup to an award-winning agency, here&apos;s how we&apos;ve grown.
+      </p>
+    </motion.div>
 
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-1/2 transform -translate-x-0.5 w-1 h-full bg-gradient-to-b from-primary to-secondary" />
+    {/* Timeline Container */}
+    <div className="relative">
+      {/* Vertical Line on the Left with progress animation */}
+      <div className="absolute left-6 top-0 w-1 h-full bg-gradient-to-b from-primary to-secondary z-0 overflow-hidden">
+        <motion.div
+          className="w-full h-full bg-white dark:bg-gray-900 origin-top"
+          style={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        />
+      </div>
 
-              <div className="space-y-12">
-                {timeline.map((item, index) => (
-                  <motion.div
-                    key={item.year}
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className={`flex items-center ${
-                      index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                    }`}
-                  >
-                    <div className="flex-1 px-8">
-                      <Card className={`${index % 2 === 0 ? "mr-8" : "ml-8"}`}>
-                        <CardHeader>
-                          <div className="flex items-center justify-between">
-                            <CardTitle className="text-2xl font-bold text-primary">
-                              {item.year}
-                            </CardTitle>
-                            <Badge variant="outline">{item.title}</Badge>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-muted-foreground">
-                            {item.description}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </div>
-
-                    {/* Timeline Dot */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background" />
-                  </motion.div>
-                ))}
-              </div>
+      <div className="space-y-16 pl-1">
+        {timeline.map((item, index) => (
+          <motion.div
+            key={item.year}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="relative flex items-start gap-6 group"
+            id={`timeline-item-${index}`}
+            data-timeline-item
+          >
+            {/* Interactive Dot */}
+            <div className="absolute left-3 top-8 z-10 group cursor-pointer">
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                className={`w-5 h-5 rounded-full border-4 border-background transition-all duration-300 ${
+                  index === 0 ? "bg-primary" : "bg-primary/70"
+                } group-hover:ring-4 group-hover:ring-primary/20`}
+                title={item.title}
+                onClick={() =>
+                  document
+                    .getElementById(`timeline-item-${index}`)
+                    ?.scrollIntoView({ behavior: "smooth", block: "center" })
+                }
+              />
             </div>
-          </div>
-        </section>
+
+            {/* Card Content */}
+            <div className="ml-10 w-full">
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl font-bold text-primary">
+                      {item.year}
+                    </CardTitle>
+                    <Badge variant="outline">{item.title}</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {item.description}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
 
         {/* Team Section */}
         <section className="py-24">
