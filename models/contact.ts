@@ -1,16 +1,21 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-export interface IContact {
+// Interface for TypeScript type checking
+export interface IContact extends Document {
   name: string;
   email: string;
   company: string;
+  phone: string;
+  projectType: string;
   budget: string;
+  timeline: string;
   message: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-const contactSchema = new Schema(
+// Define schema
+const contactSchema = new Schema<IContact>(
   {
     name: {
       type: String,
@@ -35,10 +40,28 @@ const contactSchema = new Schema(
       maxlength: [100, "Company name cannot exceed 100 characters"],
       default: "",
     },
+    phone: {
+      type: String,
+      trim: true,
+      maxlength: [20, "Phone number cannot exceed 20 characters"],
+      default: "",
+    },
+    projectType: {
+      type: String,
+      trim: true,
+      maxlength: [100, "Project type cannot exceed 100 characters"],
+      default: "",
+    },
     budget: {
       type: String,
       trim: true,
       default: "Not sure",
+    },
+    timeline: {
+      type: String,
+      trim: true,
+      maxlength: [100, "Timeline cannot exceed 100 characters"],
+      default: "",
     },
     message: {
       type: String,
@@ -53,7 +76,8 @@ const contactSchema = new Schema(
   }
 );
 
+// Export the model
 const Contact =
-  mongoose.models.Contact || mongoose.model("Contact", contactSchema);
+  mongoose.models.Contact || mongoose.model<IContact>("Contact", contactSchema);
 
 export default Contact;
