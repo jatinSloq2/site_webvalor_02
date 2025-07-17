@@ -17,70 +17,49 @@ import {
 
 const timeline = [
   {
-    year: "2019",
-    title: "Founded",
+    month: "July",
+    year: "2025",
+    title: "Launched WebValor",
     description:
-      "Started as a small design studio with a vision to create beautiful digital experiences.",
+      "Kickstarted WebValor with a mission to build modern, high-impact websites and digital solutions for startups and businesses.",
   },
   {
-    year: "2020",
-    title: "Team Expansion",
+    month: "July",
+    year: "2025",
+    title: "First Client Project",
     description:
-      "Grew to 10 talented designers and developers, expanding our service offerings.",
+      "Delivered our first client project — a clean, responsive website for a local brand — marking the beginning of our portfolio.",
   },
   {
-    year: "2021",
-    title: "100+ Projects",
+    month: "August",
+    year: "2025",
+    title: "Establishing Our Presence",
     description:
-      "Completed over 100 successful projects for clients around the world.",
+      "Launched our official agency website, finalized branding, and started outreach to connect with potential clients and collaborators.",
   },
   {
-    year: "2022",
-    title: "Award Recognition",
+    month: "August",
+    year: "2025",
+    title: "Building the Core Team",
     description:
-      "Received multiple design awards and recognition from industry leaders.",
-  },
-  {
-    year: "2023",
-    title: "Global Reach",
-    description:
-      "Expanded our services globally, working with Fortune 500 companies.",
-  },
-  {
-    year: "2024",
-    title: "Innovation Focus",
-    description:
-      "Leading the industry with AI-powered design tools and cutting-edge technology.",
+      "Began assembling a tight-knit team of developers, designers, and creatives dedicated to delivering excellence.",
   },
 ];
 
+
 const team = [
   {
-    name: "Alex Rivera",
-    role: "CEO & Creative Director",
+    name: "Jatin Singh",
+    role: "Founder & Full-Stack Developer",
     description:
-      "Visionary leader with 10+ years in digital design and strategy.",
+      "Passionate about crafting modern, high-performance web experiences. Handles design, development, and project direction at WebValor.",
     image: "/api/placeholder/300/300",
   },
   {
-    name: "Sarah Chen",
-    role: "Lead Developer",
+    name: "Parth Jat",
+    role: "Co-Founder & Creative Strategist",
     description:
-      "Full-stack developer specializing in modern web technologies.",
-    image: "/api/placeholder/300/300",
-  },
-  {
-    name: "Marcus Johnson",
-    role: "UX Designer",
-    description:
-      "User experience expert focused on creating intuitive interfaces.",
-    image: "/api/placeholder/300/300",
-  },
-  {
-    name: "Emily Davis",
-    role: "Brand Strategist",
-    description:
-      "Brand expert helping companies tell their stories effectively.",
+      "Focuses on client communication, branding, and creative direction. Helps shape WebValor’s vision and voice.",
     image: "/api/placeholder/300/300",
   },
 ];
@@ -142,11 +121,11 @@ export default function AboutPage() {
               <Badge variant="outline" className="mb-4">
                 About Webvalor
               </Badge>
-              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
                 We&apos;re passionate about
                 <span className="block gradient-text">digital excellence</span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Our mission is to transform businesses through innovative design
                 and development, creating digital experiences that inspire,
                 engage, and drive results.
@@ -155,89 +134,88 @@ export default function AboutPage() {
           </div>
         </section>
 
-       {/* Timeline Section */}
-<section className="py-24 bg-muted/20 relative">
-  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    {/* Header */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="text-center mb-16"
-    >
-      <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-6">
-        Our Journey
-      </h2>
-      <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        From a small startup to an award-winning agency, here&apos;s how we&apos;ve grown.
-      </p>
-    </motion.div>
+        {/* Timeline Section */}
+        <section className="py-24 bg-muted/20 relative">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold mb-6">
+                Our Journey
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                From a small startup to an award-winning agency, here&apos;s how we&apos;ve grown.
+              </p>
+            </motion.div>
 
-    {/* Timeline Container */}
-    <div className="relative">
-      {/* Vertical Line on the Left with progress animation */}
-      <div className="absolute left-6 top-0 w-1 h-full bg-gradient-to-b from-primary to-secondary z-0 overflow-hidden">
-        <motion.div
-          className="w-full h-full bg-white dark:bg-gray-900 origin-top"
-          style={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        />
-      </div>
+            {/* Timeline Container */}
+            <div className="relative">
+              {/* Vertical Line on the Left with progress animation */}
+              <div className="absolute left-6 top-0 w-1 h-full bg-gradient-to-b from-primary to-secondary z-0 overflow-hidden">
+                <motion.div
+                  className="w-full h-full bg-blue-100 dark:bg-gray-900 origin-top"
+                  style={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                />
+              </div>
 
-      <div className="space-y-16 pl-1">
-        {timeline.map((item, index) => (
-          <motion.div
-            key={item.year}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className="relative flex items-start gap-6 group"
-            id={`timeline-item-${index}`}
-            data-timeline-item
-          >
-            {/* Interactive Dot */}
-            <div className="absolute left-3 top-8 z-10 group cursor-pointer">
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                className={`w-5 h-5 rounded-full border-4 border-background transition-all duration-300 ${
-                  index === 0 ? "bg-primary" : "bg-primary/70"
-                } group-hover:ring-4 group-hover:ring-primary/20`}
-                title={item.title}
-                onClick={() =>
-                  document
-                    .getElementById(`timeline-item-${index}`)
-                    ?.scrollIntoView({ behavior: "smooth", block: "center" })
-                }
-              />
+              <div className="space-y-16 pl-1">
+                {timeline.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="relative flex items-start gap-6 group"
+                    id={`timeline-item-${index}`}
+                    data-timeline-item
+                  >
+                    {/* Interactive Dot */}
+                    <div className="absolute left-3 top-8 z-10 group cursor-pointer">
+                      <motion.div
+                        whileHover={{ scale: 1.2 }}
+                        className={`w-5 h-5 rounded-full border-4 border-background transition-all duration-300 ${index === 0 ? "bg-primary" : "bg-primary/70"
+                          } group-hover:ring-4 group-hover:ring-primary/20`}
+                        title={item.title}
+                        onClick={() =>
+                          document
+                            .getElementById(`timeline-item-${index}`)
+                            ?.scrollIntoView({ behavior: "smooth", block: "center" })
+                        }
+                      />
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="ml-10 w-full">
+                      <Card className="shadow-lg">
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <CardTitle className="text-2xl font-bold text-primary">
+                             {item.month} {item.year}
+                            </CardTitle>
+                            <Badge variant="outline">{item.title}</Badge>
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-gray-600 dark:text-gray-400">
+                            {item.description}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-
-            {/* Card Content */}
-            <div className="ml-10 w-full">
-              <Card className="shadow-lg">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-2xl font-bold text-primary">
-                      {item.year}
-                    </CardTitle>
-                    <Badge variant="outline">{item.title}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+          </div>
+        </section>
 
 
         {/* Team Section */}
@@ -355,10 +333,10 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { number: "150+", label: "Projects Completed" },
-                { number: "50+", label: "Happy Clients" },
-                { number: "5", label: "Years Experience" },
-                { number: "15+", label: "Team Members" },
+                { number: "2", label: "Team Members" },
+                { number: "2025", label: "Year Founded" },
+                { number: "1st", label: "Client Project Underway" },
+                { number: "100%", label: "Commitment to Quality" },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}

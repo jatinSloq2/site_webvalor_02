@@ -1,20 +1,14 @@
 "use client";
 
-import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  Code,
-  Palette,
-  Rocket,
-  Zap,
-  Globe,
-  Smartphone,
-  ChevronDown,
   Check,
+  ChevronDown
 } from "lucide-react";
+import * as React from "react";
 
-import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,181 +18,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { services } from "@/constants/index"
+import { useRouter } from "next/navigation";
 
-const services = [
-  {
-    icon: Code,
-    title: "Web Development",
-    shortDescription:
-      "Custom websites and web applications built with modern technologies.",
-    longDescription:
-      "We create responsive, fast, and scalable web applications using the latest technologies. Our development process ensures your website not only looks great but performs exceptionally across all devices and browsers.",
-    features: [
-      "React/Next.js Development",
-      "Node.js Backend Services",
-      "TypeScript Implementation",
-      "API Integration & Development",
-      "Database Design & Optimization",
-      "Performance Optimization",
-      "SEO Implementation",
-      "Security Best Practices",
-    ],
-    process: [
-      "Requirements Analysis",
-      "Technical Architecture",
-      "Development & Testing",
-      "Deployment & Launch",
-    ],
-    pricing: "Starting from $5,000",
-    timeline: "4-12 weeks",
-    color: "text-blue-500",
-    bgColor: "bg-blue-500/10",
-  },
-  {
-    icon: Palette,
-    title: "UI/UX Design",
-    shortDescription:
-      "Beautiful, intuitive interfaces that provide exceptional user experiences.",
-    longDescription:
-      "Our design team creates user-centered designs that not only look stunning but also provide intuitive and engaging experiences. We focus on usability, accessibility, and conversion optimization.",
-    features: [
-      "User Research & Analysis",
-      "Wireframing & Prototyping",
-      "Visual Design Systems",
-      "Interactive Prototypes",
-      "Usability Testing",
-      "Responsive Design",
-      "Accessibility Compliance",
-      "Design Documentation",
-    ],
-    process: [
-      "User Research",
-      "Design Strategy",
-      "Visual Design",
-      "Testing & Iteration",
-    ],
-    pricing: "Starting from $3,000",
-    timeline: "3-8 weeks",
-    color: "text-purple-500",
-    bgColor: "bg-purple-500/10",
-  },
-  {
-    icon: Rocket,
-    title: "Brand Identity",
-    shortDescription:
-      "Complete brand packages that tell your story and connect with your audience.",
-    longDescription:
-      "We help businesses establish a strong brand presence with comprehensive identity packages that include logo design, brand guidelines, and marketing materials that resonate with your target audience.",
-    features: [
-      "Logo Design & Variations",
-      "Brand Guidelines",
-      "Color Palette Development",
-      "Typography Selection",
-      "Business Card Design",
-      "Marketing Materials",
-      "Brand Application Guidelines",
-      "Digital Asset Library",
-    ],
-    process: [
-      "Brand Discovery",
-      "Concept Development",
-      "Design Refinement",
-      "Final Delivery",
-    ],
-    pricing: "Starting from $2,500",
-    timeline: "2-6 weeks",
-    color: "text-green-500",
-    bgColor: "bg-green-500/10",
-  },
-  {
-    icon: Zap,
-    title: "Performance Optimization",
-    shortDescription:
-      "Lightning-fast websites that rank well and convert visitors into customers.",
-    longDescription:
-      "We optimize your website&apos;s performance to ensure fast loading times, better search engine rankings, and improved user experience. Our optimization strategies focus on speed, SEO, and conversion rates.",
-    features: [
-      "Page Speed Optimization",
-      "Core Web Vitals Improvement",
-      "SEO Optimization",
-      "Image & Asset Optimization",
-      "Caching Implementation",
-      "CDN Configuration",
-      "Performance Monitoring",
-      "Analytics Setup",
-    ],
-    process: [
-      "Performance Audit",
-      "Optimization Strategy",
-      "Implementation",
-      "Monitoring & Reporting",
-    ],
-    pricing: "Starting from $1,500",
-    timeline: "1-4 weeks",
-    color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10",
-  },
-  {
-    icon: Globe,
-    title: "E-commerce Solutions",
-    shortDescription:
-      "Complete online stores with secure payments and inventory management.",
-    longDescription:
-      "We build robust e-commerce platforms that drive sales and provide seamless shopping experiences. Our solutions include everything from product catalogs to payment processing and order management.",
-    features: [
-      "Custom Online Stores",
-      "Payment Gateway Integration",
-      "Inventory Management",
-      "Order Processing System",
-      "Customer Account Portal",
-      "Mobile-Responsive Design",
-      "SSL Security Implementation",
-      "Analytics & Reporting",
-    ],
-    process: [
-      "Store Planning",
-      "Development & Integration",
-      "Testing & Security",
-      "Launch & Training",
-    ],
-    pricing: "Starting from $8,000",
-    timeline: "6-16 weeks",
-    color: "text-red-500",
-    bgColor: "bg-red-500/10",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile Development",
-    shortDescription:
-      "Native and cross-platform mobile apps that engage users on any device.",
-    longDescription:
-      "We develop mobile applications that provide native performance and user experience. Whether you need iOS, Android, or cross-platform solutions, we deliver apps that users love.",
-    features: [
-      "iOS App Development",
-      "Android App Development",
-      "React Native Solutions",
-      "App Store Optimization",
-      "Push Notifications",
-      "Offline Functionality",
-      "API Integration",
-      "App Analytics",
-    ],
-    process: [
-      "App Strategy",
-      "Design & Development",
-      "Testing & QA",
-      "App Store Submission",
-    ],
-    pricing: "Starting from $10,000",
-    timeline: "8-20 weeks",
-    color: "text-indigo-500",
-    bgColor: "bg-indigo-500/10",
-  },
-];
 
 export default function ServicesPage() {
   const [expandedCard, setExpandedCard] = React.useState<number | null>(null);
-
+  const router = useRouter()
   const toggleCard = (index: number) => {
     setExpandedCard(expandedCard === index ? null : index);
   };
@@ -220,11 +46,11 @@ export default function ServicesPage() {
               <Badge variant="outline" className="mb-4">
                 Our Services
               </Badge>
-              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
                 Comprehensive
                 <span className="block gradient-text">Digital Solutions</span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 From concept to launch, we provide end-to-end digital services
                 that help your business thrive in the modern digital landscape.
               </p>
@@ -233,7 +59,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Grid */}
-        <section className="py-24">
+        <section className="py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {services.map((service, index) => {
@@ -352,7 +178,9 @@ export default function ServicesPage() {
 
                               {/* CTA */}
                               <div className="pt-4 border-t border-border">
-                                <Button className="w-full gradient-primary text-white">
+                                <Button className="w-full gradient-primary text-white"
+                                  onClick={router.push("/contact")}
+                                >
                                   Get Started with {service.title}
                                 </Button>
                               </div>
@@ -457,7 +285,13 @@ export default function ServicesPage() {
                   Start Your Project
                 </Button>
                 <Button variant="outline" className="px-8 py-4 text-lg">
-                  Schedule a Call
+                  <a
+                    href="https://calendly.com/jatinsingh098loq2/intro-call"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Schedule a Call
+                  </a>
                 </Button>
               </div>
             </motion.div>

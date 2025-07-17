@@ -23,14 +23,14 @@ export function AnimatedButton({
     >
       <Button
         className={cn(
-          "relative overflow-hidden transition-all duration-300",
+          "relative overflow-hidden transition-all duration-300 bg-gradient-to-r from-primary to-secondary",
           glowing && "shadow-lg shadow-primary/25 hover:shadow-primary/40",
           className
         )}
         {...props}
       >
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0"
+          className="absolute inset-0 bg-gradient-to-r from-primary to-secondary"
           initial={{ x: "-100%" }}
           whileHover={{ x: "100%" }}
           transition={{ duration: 0.6 }}

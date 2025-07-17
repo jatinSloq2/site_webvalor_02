@@ -1,27 +1,27 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-
+import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import { ScrollCue } from "@/components/animations/scroll-cue";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import { AnimatedButton } from "../layout/animated-button";
+import { useRouter } from "next/navigation";
 
 const textVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6 },
+    transition: { duration: 0.6, ease: easeOut },
   },
 };
 
-export const staggerContainer = {
+const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
     },
   },
 };
@@ -30,48 +30,55 @@ export function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const router = useRouter()
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/30 overflow-hidden px-4 sm:px-6 lg:px-8">
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 pointer-events-none" />
 
-      {/* 3D Blob Background */}
+      {/* Placeholder for future 3D blob or animation */}
       <motion.div
         style={{ y, opacity }}
         className="absolute inset-0 flex items-center justify-center"
       >
-        <div className="w-96 h-96 md:w-[600px] md:h-[600px]">
-          {/* <ThreeDBlob /> */}
+        <div className="w-[400px] h-[400px] md:w-[600px] md:h-[600px]">
+          {/* Optional: Add <ThreeDBlob /> here */}
         </div>
       </motion.div>
 
-      {/* Content */}
+      {/* Main content */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto"
+        className="relative z-10 max-w-5xl mx-auto text-center"
       >
+        {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 text-primary text-sm font-medium"
+          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 backdrop-blur-md border border-primary/30 text-primary text-sm font-medium shadow-md"
         >
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            className="flex-shrink-0"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-5 h-5 text-yellow-400" />
           </motion.div>
-          Premium Web Development Agency
+          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Premium Web Development Agency
+          </span>
         </motion.div>
+
+        {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
-          className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-tight mt-5"
+          className="text-5xl md:text-7xl lg:text-8xl font-serif font-extrabold leading-tight mt-6"
         >
           We Build{" "}
           <motion.span
@@ -80,9 +87,9 @@ export function Hero() {
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
             transition={{
-              duration: 3,
+              duration: 5,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
           >
             Confident
@@ -91,35 +98,38 @@ export function Hero() {
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
+            transition={{ delay: 1 }}
           >
-            Websites.
+            Websites
           </motion.span>
         </motion.h1>
 
+        {/* Subheadline */}
         <motion.p
           variants={textVariants}
-          className="mt-8 text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+          className="mt-6 text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
         >
           We craft premium digital experiences through motion-first design,
-          cutting-edge technology, and storytelling that captivates your
-          audience.
+          cutting-edge technology, and captivating storytelling.
         </motion.p>
 
+        {/* CTA buttons */}
         <motion.div
           variants={textVariants}
-          className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <AnimatedButton
             size="lg"
-            className="gradient-primary text-white hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse-glow px-8 py-4 text-lg"
+            className="gradient-primary text-white hover:shadow-xl hover:scale-105 px-8 py-4 text-lg transition-all duration-300"
+            onClick={() => router.push("/contact")}
           >
             Start Your Project
           </AnimatedButton>
           <Button
+          onClick={() => router.push("/portfolio")}
             variant="outline"
             size="lg"
-            className="glass hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 px-8 py-4 text-lg"
+            className="glass px-8 py-4 text-lg transition-colors duration-500  hover:border-primary"
           >
             View Our Work
           </Button>
@@ -128,7 +138,7 @@ export function Hero() {
         {/* Stats */}
         <motion.div
           variants={textVariants}
-          className="mt-16 flex items-center justify-center gap-8 max-w-2xl mx-auto"
+          className="mt-14 flex gap-6 justify-center items-center max-w-3xl mx-auto"
         >
           {[
             { number: "150+", label: "Projects Delivered" },
@@ -137,23 +147,19 @@ export function Hero() {
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1.5 + index * 0.2 }}
+              transition={{ delay: 1.4 + index * 0.2 }}
               className="text-center"
             >
-              <div className="font-brand text-2xl sm:text-3xl font-bold gradient-text">
-                {stat.number}
-              </div>
-              <div className="text-sm sm:text-base text-muted-foreground mt-1">
-                {stat.label}
-              </div>
+              <div className="text-3xl font-bold gradient-text">{stat.number}</div>
+              <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
       </motion.div>
 
-      {/* Scroll Cue */}
+      {/* Scroll cue */}
       <ScrollCue targetId="services" />
 
       {/* Decorative elements */}

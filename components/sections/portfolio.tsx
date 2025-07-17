@@ -6,6 +6,7 @@ import { ExternalLink, Github, Eye } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const portfolioItems = [
   {
@@ -119,7 +120,7 @@ const itemVariants = {
 
 export function Portfolio() {
   const [activeCategory, setActiveCategory] = React.useState("all");
-
+  const router = useRouter()
   const filteredItems = portfolioItems.filter(
     (item) => activeCategory === "all" || item.category === activeCategory,
   );
@@ -138,10 +139,10 @@ export function Portfolio() {
           <Badge variant="outline" className="mb-4">
             Our Work
           </Badge>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="font-serif text-4xl md:text-7xl font-bold mb-6">
             Featured Projects
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
+         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-16">
             Explore our portfolio of successful projects that showcase our
             expertise in creating exceptional digital experiences.
           </p>
@@ -274,7 +275,9 @@ export function Portfolio() {
             and creativity.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="gradient-primary text-white px-8 py-4 text-lg hover:shadow-lg transition-shadow animate-pulse-glow">
+            <Button 
+            onClick={()=> { router.push("/contact")}}
+            className="gradient-primary text-white px-8 py-4 text-lg hover:shadow-lg transition-shadow animate-pulse-glow">
               Start Your Project
             </Button>
           </motion.div>

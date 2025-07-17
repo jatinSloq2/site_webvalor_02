@@ -1,11 +1,11 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import { CheckCircle, Mail, MapPin, Phone, Send } from "lucide-react";
+import * as React from "react";
 
-import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,25 +24,26 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import axios from "axios";
 
 const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    description: "hello@webvalor.com",
-    link: "mailto:hello@webvalor.com",
+    description: "webvalor@outlook.com",
+    link: "mailto:webvalor@outlook.com",
   },
   {
     icon: Phone,
     title: "Phone",
-    description: "+1 (555) 123-4567",
-    link: "tel:+15551234567",
+    description: "+91 7240440461",
+    link: "tel:+917240440461",
   },
   {
     icon: MapPin,
     title: "Location",
-    description: "San Francisco, CA",
-    link: "#",
+    description: "Jaipur, Rajasthan, India",
+    link: "https://www.google.com/maps/place/jaipur/data=!4m2!3m1!1s0x396c4adf4c57e281:0xce1c63a0cf22e09?sa=X&ved=1t:155783&ictx=111",
   },
 ];
 
@@ -83,24 +84,35 @@ export default function ContactPage() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+    setErrors({});
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset form after success message
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        budget: "",
-        message: "",
+    try {
+      const response = await axios.post('/api/contact', formData, {
+        headers: { 'Content-Type': 'application/json' },
       });
-    }, 3000);
+
+      if (response.status === 201) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            budget: 'Not sure',
+            message: '',
+          });
+        }, 3000);
+      }
+    } catch (error: any) {
+      if (error.response) {
+        setErrors({ general: (error.response?.data as { error?: string })?.error || 'Failed to submit form. Please try again.' });
+      } else {
+        setErrors({ general: 'An error occurred. Please try again.' });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -127,11 +139,11 @@ export default function ContactPage() {
               <Badge variant="outline" className="mb-4">
                 Get In Touch
               </Badge>
-              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
                 Let&apos;s create something
                 <span className="block gradient-text">amazing together</span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Ready to bring your vision to life? We&apos;d love to hear about your
                 project and discuss how we can help you achieve your goals.
               </p>
@@ -150,7 +162,7 @@ export default function ContactPage() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <h2 className="font-serif text-3xl font-bold mb-6">
+                <h2 className="font-serif text-4xl font-bold mb-6">
                   Contact Information
                 </h2>
                 <p className="text-muted-foreground mb-8">
@@ -186,22 +198,6 @@ export default function ContactPage() {
                     );
                   })}
                 </div>
-
-                {/* Map Placeholder */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="mt-12 h-64 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center"
-                >
-                  <div className="text-center">
-                    <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <p className="text-muted-foreground">
-                      Interactive map would be here
-                    </p>
-                  </div>
-                </motion.div>
               </motion.div>
 
               {/* Contact Form */}
@@ -233,9 +229,18 @@ export default function ContactPage() {
                           Thank you!
                         </h3>
                         <p className="text-muted-foreground">
-                          We&apos;ve received your message and will get back to you
-                          soon.
+                          We&apos;ve received your message and will get back to you soon.
                         </p>
+                      </motion.div>
+                    ) : errors.general ? (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="text-center py-8 text-red-500"
+                      >
+                        <Send className="w-10 h-10 text-red-500 mx-auto mb-4" />
+                        <h3 className="font-serif text-xl font-semibold mb-2">Oops!</h3>
+                        <p className="text-muted-foreground">{errors.general}</p>
                       </motion.div>
                     ) : (
                       <TooltipProvider>
@@ -342,10 +347,10 @@ export default function ContactPage() {
                                 className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
                               >
                                 <option value="">Select budget range</option>
-                                <option value="5k-10k">$5k - $10k</option>
-                                <option value="10k-25k">$10k - $25k</option>
-                                <option value="25k-50k">$25k - $50k</option>
-                                <option value="50k+">$50k+</option>
+                                <option value="5k-10k">₹15k - ₹20k</option>
+                                <option value="10k-25k">₹20k - ₹35k</option>
+                                <option value="25k-50k">₹35k - ₹50k</option>
+                                <option value="50k+">₹50k+</option>
                               </select>
                             </motion.div>
                           </div>
