@@ -7,8 +7,10 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 export function CTA() {
+  const router = useRouter()
   return (
     <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -106,7 +108,13 @@ export function CTA() {
                   className="glass hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 px-8 py-4 text-lg group"
                 >
                   <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                  Schedule a Call
+                  <a
+                    href="https://calendly.com/jatinsingh098loq2/intro-call"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Schedule a Call
+                  </a>
                 </Button>
               </motion.div>
 
@@ -159,7 +167,9 @@ export function CTA() {
                       <p className="text-sm text-muted-foreground mb-3">
                         {option.description}
                       </p>
-                      <span className="text-sm text-primary font-medium group-hover:underline">
+                      <span className="text-sm text-primary font-medium group-hover:underline"
+                        onClick={() => { router.push("/contact") }}
+                      >
                         {option.action} →
                       </span>
                     </motion.div>
@@ -171,33 +181,33 @@ export function CTA() {
         </motion.div>
 
         {/* Trust Indicators */}
-       <motion.div
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.6 }}
-  viewport={{ once: true }}
-  className="mt-16 text-center px-4"
->
-  <p className="text-sm text-muted-foreground mb-6">
-    Trusted by industry leaders and growing startups
-  </p>
-  <div className="flex flex-wrap justify-center gap-4 sm:gap-8 opacity-60">
-    {["TechFlow", "EcoMart", "InvestTech", "MindSpace", "Luxe"].map(
-      (company, index) => (
         <motion.div
-          key={company}
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
-          className="font-semibold text-lg"
+          className="mt-16 text-center px-4"
         >
-          {company}
+          <p className="text-sm text-muted-foreground mb-6">
+            Trusted by industry leaders and growing startups
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 opacity-60">
+            {["TechFlow", "EcoMart", "InvestTech", "MindSpace", "Luxe"].map(
+              (company, index) => (
+                <motion.div
+                  key={company}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="font-semibold text-lg"
+                >
+                  {company}
+                </motion.div>
+              )
+            )}
+          </div>
         </motion.div>
-      )
-    )}
-  </div>
-</motion.div>
 
       </div>
     </section>

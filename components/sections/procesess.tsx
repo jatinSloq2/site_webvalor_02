@@ -1,10 +1,10 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "framer-motion";
-import { Search, Lightbulb, Code, Rocket } from "lucide-react";
+import { Code, Lightbulb, Rocket, Search } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { useRouter } from "next/navigation";
 
 const processSteps = [
   {
@@ -66,6 +66,7 @@ const processSteps = [
 ];
 
 export function Process() {
+  const router = useRouter()
   return (
     <section className="py-24 bg-gradient-to-b from-muted/20 to-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -102,9 +103,8 @@ export function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className={`flex flex-col lg:flex-row items-center gap-12 ${
-                  isEven ? "" : "lg:flex-row-reverse"
-                }`}
+                className={`flex flex-col lg:flex-row items-center gap-12 ${isEven ? "" : "lg:flex-row-reverse"
+                  }`}
               >
                 {/* Content */}
                 <div className="flex-1 space-y-6">
@@ -205,7 +205,9 @@ export function Process() {
             your vision to life.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <button className="gradient-primary text-white px-8 py-4 rounded-lg font-medium hover:shadow-lg transition-shadow animate-pulse-glow">
+            <button className="gradient-primary text-white px-8 py-4 rounded-lg font-medium hover:shadow-lg transition-shadow animate-pulse-glow"
+              onClick={() => { router.push("/contact") }}
+            >
               Get Started Today
             </button>
           </motion.div>
