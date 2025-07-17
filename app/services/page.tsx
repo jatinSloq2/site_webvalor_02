@@ -74,6 +74,7 @@ export default function ServicesPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     layout
+
                   >
                     <Card className="h-full glass hover:glass-dark dark:hover:glass transition-all duration-300 hover:shadow-2xl border-border/50 hover:border-primary/50 cursor-pointer">
                       <CardHeader
@@ -179,7 +180,7 @@ export default function ServicesPage() {
                               {/* CTA */}
                               <div className="pt-4 border-t border-border">
                                 <Button className="w-full gradient-primary text-white"
-                                  onClick={router.push("/contact")}
+                                 onClick={() => router.push("/contact")}
                                 >
                                   Get Started with {service.title}
                                 </Button>
