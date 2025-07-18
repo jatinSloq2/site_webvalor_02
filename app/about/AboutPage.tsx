@@ -85,44 +85,44 @@ const timeline = [
   },
 ];
 
-const team = [
+export const team = [
   {
     name: "Jatin Singh",
     role: "Founder & Full-Stack Developer",
     description:
-      "Visionary leader with expertise in modern web technologies, system architecture, and user experience design. Passionate about transforming business ideas into powerful digital realities.",
-    image: "/api/placeholder/400/400",
-    skills: ["React/Next.js", "Node.js", "System Design", "UI/UX", "DevOps"],
+      "Full-stack developer passionate about building impactful digital products. Specializes in modern web stacks, user-first design, and scalable architecture. Focused on delivering clean, efficient, and maintainable solutions.",
+    image: "/api/placeholder/400/400", // You can swap this with a real image later
+    skills: ["React", "Next.js", "Node.js", "UI/UX", "MongoDB"],
     social: {
-      linkedin: "#",
-      github: "#",
+      linkedin: "https://linkedin.com/in/jatin-singh", // Replace with actual URL
+      github: "https://github.com/yourusername",        // Replace with actual username
       email: "jatin@webvalor.com",
     },
-    experience: "5+ Years",
-    projects: "50+ Projects",
+    experience: "2+ Years",
+    projects: "15+ Projects",
   },
   {
     name: "Parth Jat",
     role: "Co-Founder & Creative Strategist",
     description:
-      "Strategic mastermind specializing in brand development, client relations, and creative direction. Ensures every project aligns with business objectives and brand vision.",
-    image: "/api/placeholder/400/400",
+      "Creative thinker with a strong sense for brand identity, user behavior, and digital storytelling. Helps shape project direction to align design with business goals and customer needs.",
+    image: "/api/placeholder/400/400", // Replace when available
     skills: [
       "Brand Strategy",
-      "Creative Direction",
-      "Client Relations",
-      "Marketing",
-      "Business Development",
+      "Content Direction",
+      "Marketing Fundamentals",
+      "Client Communication",
     ],
     social: {
-      linkedin: "#",
-      github: "#",
+      linkedin: "https://linkedin.com/in/parth-jat", // Replace with actual URL
+      github: "#", // Can be removed if not relevant
       email: "parth@webvalor.com",
     },
-    experience: "4+ Years",
-    projects: "40+ Campaigns",
+    experience: "1.5+ Years",
+    projects: "10+ Campaigns",
   },
 ];
+
 
 const values = [
   {
@@ -335,17 +335,7 @@ export default function AboutPage() {
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Vertical Progress Line */}
-          <div className="absolute left-6 sm:left-8 top-0 w-1 h-full bg-gradient-to-b from-primary via-secondary to-primary z-0">
-            <motion.div
-              className="w-full h-full bg-background origin-top"
-              style={{ scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              transition={{ duration: 2, ease: "easeOut" }}
-            />
-          </div>
-
+       
           <div className="space-y-12 sm:space-y-16 pl-1">
             {timeline.map((item, index) => {
               const Icon = item.icon;
@@ -359,7 +349,7 @@ export default function AboutPage() {
                   className="relative flex items-start gap-6 sm:gap-8 group"
                 >
                   {/* Timeline Dot & Icon */}
-                  <div className="absolute left-4 sm:left-6 top-6 sm:top-8 z-10">
+                  <div className="absolute left-5 top-6 sm:top-8 z-10">
                     <motion.div
                       whileHover={{ scale: 1.2 }}
                       className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-primary border-4 border-background group-hover:ring-4 group-hover:ring-primary/20 transition-all duration-300 flex items-center justify-center"
@@ -400,7 +390,6 @@ export default function AboutPage() {
               );
             })}
           </div>
-        </div>
       </PageSection>
 
       {/* Enhanced Team Section */}
@@ -448,7 +437,7 @@ export default function AboutPage() {
                   <CardTitle className="font-serif text-xl sm:text-2xl font-bold mb-2">
                     {member.name}
                   </CardTitle>
-                  <Badge className="bg-primary/10 text-primary mb-4 text-xs sm:text-sm">
+                  <Badge className="bg-primary/10 text-primary mb-4 text-xs sm:text-sm mx-auto">
                     {member.role}
                   </Badge>
                   <CardDescription className="text-sm sm:text-base leading-relaxed">
@@ -553,7 +542,7 @@ export default function AboutPage() {
                     </CardTitle>
                     <Badge
                       variant="outline"
-                      className="text-primary mb-4 text-xs sm:text-sm"
+                      className="text-primary mb-4 text-xs sm:text-sm mx-auto"
                     >
                       {value.stats}
                     </Badge>
