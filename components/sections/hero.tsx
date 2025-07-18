@@ -30,7 +30,7 @@ export function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/30 overflow-hidden px-4 sm:px-6 lg:px-8">
@@ -42,7 +42,7 @@ export function Hero() {
         style={{ y, opacity }}
         className="absolute inset-0 flex items-center justify-center"
       >
-        <div className="w-[400px] h-[400px] md:w-[600px] md:h-[600px]">
+        <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px]">
           {/* Optional: Add <ThreeDBlob /> here */}
         </div>
       </motion.div>
@@ -52,21 +52,26 @@ export function Hero() {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-10 max-w-5xl mx-auto text-center"
+        className="relative z-10 max-w-5xl mx-auto text-center px-4"
       >
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 backdrop-blur-md border border-primary/30 text-primary text-sm font-medium shadow-md"
+          transition={{
+            delay: 0.2,
+            duration: 0.6,
+            type: "spring",
+            stiffness: 100,
+          }}
+          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-primary/10 backdrop-blur-md border border-primary/30 text-primary text-xs sm:text-sm font-medium shadow-md"
         >
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             className="flex-shrink-0"
           >
-            <Sparkles className="w-5 h-5 text-yellow-400" />
+            <Sparkles className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400" />
           </motion.div>
           <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Premium Web Development Agency
@@ -78,7 +83,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
-          className="text-5xl md:text-7xl lg:text-8xl font-serif font-extrabold leading-tight mt-6"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-extrabold leading-tight mt-4 sm:mt-6"
         >
           We Build{" "}
           <motion.span
@@ -107,7 +112,7 @@ export function Hero() {
         {/* Subheadline */}
         <motion.p
           variants={textVariants}
-          className="mt-6 text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+          className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
         >
           We craft premium digital experiences through motion-first design,
           cutting-edge technology, and captivating storytelling.
@@ -116,20 +121,20 @@ export function Hero() {
         {/* CTA buttons */}
         <motion.div
           variants={textVariants}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
         >
           <AnimatedButton
             size="lg"
-            className="gradient-primary text-white hover:shadow-xl hover:scale-105 px-8 py-4 text-lg transition-all duration-300"
+            className="gradient-primary text-white hover:shadow-xl hover:scale-105 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 w-full sm:w-auto"
             onClick={() => router.push("/contact")}
           >
             Start Your Project
           </AnimatedButton>
           <Button
-          onClick={() => router.push("/portfolio")}
+            onClick={() => router.push("/portfolio")}
             variant="outline"
             size="lg"
-            className="glass px-8 py-4 text-lg transition-colors duration-500  hover:border-primary"
+            className="glass px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-colors duration-500 hover:border-primary w-full sm:w-auto"
           >
             View Our Work
           </Button>
@@ -138,7 +143,7 @@ export function Hero() {
         {/* Stats */}
         <motion.div
           variants={textVariants}
-          className="mt-14 flex gap-6 justify-center items-center max-w-3xl mx-auto"
+          className="mt-10 sm:mt-14 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-3xl mx-auto"
         >
           {[
             { number: "150+", label: "Projects Delivered" },
@@ -152,8 +157,12 @@ export function Hero() {
               transition={{ delay: 1.4 + index * 0.2 }}
               className="text-center"
             >
-              <div className="text-3xl font-bold gradient-text">{stat.number}</div>
-              <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+              <div className="text-2xl sm:text-3xl font-bold gradient-text">
+                {stat.number}
+              </div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -162,15 +171,15 @@ export function Hero() {
       {/* Scroll cue */}
       <ScrollCue targetId="services" />
 
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-2 h-2 bg-primary rounded-full animate-ping" />
-      <div className="absolute top-32 right-20 w-1 h-1 bg-secondary rounded-full animate-pulse" />
+      {/* Decorative elements - hidden on mobile for cleaner look */}
+      <div className="hidden sm:block absolute top-20 left-10 w-2 h-2 bg-primary rounded-full animate-ping" />
+      <div className="hidden sm:block absolute top-32 right-20 w-1 h-1 bg-secondary rounded-full animate-pulse" />
       <div
-        className="absolute bottom-40 left-1/4 w-1.5 h-1.5 bg-primary rounded-full animate-bounce"
+        className="hidden sm:block absolute bottom-40 left-1/4 w-1.5 h-1.5 bg-primary rounded-full animate-bounce"
         style={{ animationDelay: "0.5s" }}
       />
       <div
-        className="absolute bottom-20 right-1/3 w-1 h-1 bg-secondary rounded-full animate-ping"
+        className="hidden sm:block absolute bottom-20 right-1/3 w-1 h-1 bg-secondary rounded-full animate-ping"
         style={{ animationDelay: "1s" }}
       />
     </section>
