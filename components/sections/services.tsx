@@ -1,16 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, ArrowRight, CheckCircle } from "lucide-react";
-import * as React from "react";
+import { CheckCircle, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { ServiceCard } from "@/components/ui/service-card";
-import { SectionHeader } from "@/components/ui/section-header";
-import { StatsGrid } from "@/components/ui/stats-grid";
 import { AnimatedButton } from "@/components/layout/animated-button";
-import { services, companyStats } from "@/constants";
+import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
+import { ServiceCard } from "@/components/ui/service-card";
+import { StatsGrid } from "@/components/ui/stats-grid";
+import { companyStats, services } from "@/constants";
 
 const containerVariants = {
   hidden: { opacity: 0 },

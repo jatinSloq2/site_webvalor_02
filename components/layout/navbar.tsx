@@ -22,7 +22,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const router = useRouter();
+  const router = useRouter()
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
@@ -46,7 +47,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex">
             <span className="text-4xl font-serif font-bold gradient-text">
               Webvalor
             </span>
@@ -59,7 +60,7 @@ export function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "text-md font-medium transition-colors hover:text-primary",
+                  "text-md font-medium transition-colors pt-2 hover:text-primary",
                   pathname === item.href
                     ? "text-primary"
                     : "text-muted-foreground"
@@ -73,7 +74,11 @@ export function Navbar() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
-            <AnimatedButton size="lg" glowing onClick={() => router.push("/contact")}>
+            <AnimatedButton
+              size="lg"
+              glowing
+              onClick={() => router.push("/contact")}
+            >
               Start Project
             </AnimatedButton>
           </div>
@@ -115,7 +120,11 @@ export function Navbar() {
             >
               <div className="flex justify-between items-center mb-6">
                 <span className="text-xl font-serif font-bold">Webvalor</span>
-                <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   <X className="h-5 w-5" />
                 </Button>
               </div>
@@ -137,7 +146,12 @@ export function Navbar() {
                 ))}
               </div>
               <div className="mt-auto">
-                <AnimatedButton size="sm" className="w-full" glowing>
+                <AnimatedButton
+                  size="sm"
+                  className="w-full"
+                  glowing
+                  onClick={() => router.push("/contact")}
+                >
                   Start Project
                 </AnimatedButton>
               </div>

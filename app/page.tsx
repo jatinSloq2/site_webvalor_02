@@ -9,7 +9,6 @@ import { Process } from "@/components/sections/procesess";
 import { Testimonials } from "@/components/sections/testimonials";
 import { CTA } from "@/components/sections/cta";
 
-// SEO Metadata
 export const metadata = generateMetadata({
   title: pageMetadata.home.title,
   description: pageMetadata.home.description,
@@ -18,7 +17,6 @@ export const metadata = generateMetadata({
 });
 
 export default function Home() {
-  // Webvalor Creative Agency Homepage
   return (
     <PageWrapper>
       <Hero />

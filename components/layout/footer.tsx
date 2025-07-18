@@ -51,7 +51,7 @@ export function Footer() {
     <footer className="relative bg-muted/30 border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 items-center">
             {/* Brand Section */}
             <div className="lg:col-span-1">
               <motion.div
@@ -104,7 +104,7 @@ export function Footer() {
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-serif text-lg font-semibold">Services</h3>
+              <h3 className="font-serif text-2xl font-semibold">Services</h3>
               <ul className="mt-4 space-y-3">
                 {footerLinks.services.map((link) => (
                   <li key={link.name}>
@@ -126,7 +126,7 @@ export function Footer() {
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-serif text-lg font-semibold">Company</h3>
+              <h3 className="font-serif text-2xl font-semibold">Company</h3>
               <ul className="mt-4 space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
@@ -156,7 +156,7 @@ export function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 rounded-md bg-background px-3 py-2 text-sm border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="flex-1 rounded-md bg-background px-0.5 py-2 text-sm border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 />
                 <Button size="sm" className="gradient-primary text-white">
                   Subscribe
@@ -173,7 +173,7 @@ export function Footer() {
             viewport={{ once: true }}
             className="mt-12 flex flex-col items-center justify-between border-t border-border pt-8 sm:flex-row"
           >
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-start gap-4 text-sm text-muted-foreground">
               <span>
                 © {new Date().getFullYear()} Webvalor. All rights reserved.
               </span>
