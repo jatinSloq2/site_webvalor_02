@@ -2,12 +2,12 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { 
-  Award, 
-  Users, 
-  Target, 
-  Heart, 
-  Zap, 
+import {
+  Award,
+  Users,
+  Target,
+  Heart,
+  Zap,
   Globe,
   Calendar,
   MapPin,
@@ -21,7 +21,7 @@ import {
   Clock,
   CheckCircle2,
   ArrowRight,
-  Quote
+  Quote,
 } from "lucide-react";
 
 import { Navbar } from "@/components/layout/navbar";
@@ -35,6 +35,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { SectionHeader } from "@/components/ui/section-header";
 import { useRouter } from "next/navigation";
 
 const timeline = [
@@ -42,112 +43,131 @@ const timeline = [
     month: "July",
     year: "2025",
     title: "The Vision Takes Shape",
-    description: "WebValor was born from a simple yet powerful vision: to democratize high-quality web development for businesses of all sizes. Our founders recognized the gap between affordable web solutions and premium digital experiences.",
+    description:
+      "WebValor was born from a simple yet powerful vision: to democratize high-quality web development for businesses of all sizes. Our founders recognized the gap between affordable web solutions and premium digital experiences.",
     milestone: "Company Founded",
-    icon: Lightbulb
+    icon: Lightbulb,
   },
   {
     month: "July",
-    year: "2025", 
+    year: "2025",
     title: "First Client Success",
-    description: "Delivered our inaugural project — a sleek, responsive website for a local startup that exceeded performance benchmarks and drove 200% increase in user engagement within the first month.",
+    description:
+      "Delivered our inaugural project — a sleek, responsive website for a local startup that exceeded performance benchmarks and drove 200% increase in user engagement within the first month.",
     milestone: "Project Delivered",
-    icon: Trophy
+    icon: Trophy,
   },
   {
     month: "August",
     year: "2025",
     title: "Digital Presence Established",
-    description: "Launched our comprehensive digital ecosystem including our agency website, brand identity, and strategic partnerships. Began building our reputation in the digital community through thought leadership.",
+    description:
+      "Launched our comprehensive digital ecosystem including our agency website, brand identity, and strategic partnerships. Began building our reputation in the digital community through thought leadership.",
     milestone: "Brand Launch",
-    icon: Globe
+    icon: Globe,
   },
   {
     month: "August",
     year: "2025",
     title: "Team Formation & Growth",
-    description: "Assembled our core team of passionate developers, designers, and strategists. Each member brings unique expertise and shares our commitment to delivering exceptional digital experiences.",
+    description:
+      "Assembled our core team of passionate developers, designers, and strategists. Each member brings unique expertise and shares our commitment to delivering exceptional digital experiences.",
     milestone: "Team Expansion",
-    icon: Users
+    icon: Users,
   },
   {
     month: "September",
     year: "2025",
     title: "Technology Stack Mastery",
-    description: "Established our cutting-edge technology stack and development methodologies. Implemented best practices for performance, security, and scalability across all our projects.",
+    description:
+      "Established our cutting-edge technology stack and development methodologies. Implemented best practices for performance, security, and scalability across all our projects.",
     milestone: "Tech Excellence",
-    icon: Zap
-  }
+    icon: Zap,
+  },
 ];
 
 const team = [
   {
     name: "Jatin Singh",
     role: "Founder & Full-Stack Developer",
-    description: "Visionary leader with expertise in modern web technologies, system architecture, and user experience design. Passionate about transforming business ideas into powerful digital realities.",
+    description:
+      "Visionary leader with expertise in modern web technologies, system architecture, and user experience design. Passionate about transforming business ideas into powerful digital realities.",
     image: "/api/placeholder/400/400",
     skills: ["React/Next.js", "Node.js", "System Design", "UI/UX", "DevOps"],
     social: {
       linkedin: "#",
       github: "#",
-      email: "jatin@webvalor.com"
+      email: "jatin@webvalor.com",
     },
     experience: "5+ Years",
-    projects: "50+ Projects"
+    projects: "50+ Projects",
   },
   {
     name: "Parth Jat",
     role: "Co-Founder & Creative Strategist",
-    description: "Strategic mastermind specializing in brand development, client relations, and creative direction. Ensures every project aligns with business objectives and brand vision.",
+    description:
+      "Strategic mastermind specializing in brand development, client relations, and creative direction. Ensures every project aligns with business objectives and brand vision.",
     image: "/api/placeholder/400/400",
-    skills: ["Brand Strategy", "Creative Direction", "Client Relations", "Marketing", "Business Development"],
+    skills: [
+      "Brand Strategy",
+      "Creative Direction",
+      "Client Relations",
+      "Marketing",
+      "Business Development",
+    ],
     social: {
       linkedin: "#",
       github: "#",
-      email: "parth@webvalor.com"
+      email: "parth@webvalor.com",
     },
     experience: "4+ Years",
-    projects: "40+ Campaigns"
-  }
+    projects: "40+ Campaigns",
+  },
 ];
 
 const values = [
   {
     icon: Target,
     title: "Innovation First",
-    description: "We push the boundaries of what's possible, embracing cutting-edge technologies and methodologies to deliver solutions that are ahead of the curve.",
-    stats: "Latest Tech Stack"
+    description:
+      "We push the boundaries of what's possible, embracing cutting-edge technologies and methodologies to deliver solutions that are ahead of the curve.",
+    stats: "Latest Tech Stack",
   },
   {
     icon: Heart,
     title: "Passion-Driven",
-    description: "Every line of code, every design element, and every strategy is crafted with genuine passion and attention to detail that shows in our exceptional results.",
-    stats: "100% Commitment"
+    description:
+      "Every line of code, every design element, and every strategy is crafted with genuine passion and attention to detail that shows in our exceptional results.",
+    stats: "100% Commitment",
   },
   {
     icon: Users,
     title: "Collaborative Excellence",
-    description: "We work closely with our clients as true partners, fostering relationships built on trust, transparency, and shared success.",
-    stats: "95% Client Retention"
+    description:
+      "We work closely with our clients as true partners, fostering relationships built on trust, transparency, and shared success.",
+    stats: "95% Client Retention",
   },
   {
     icon: Zap,
     title: "Performance Obsessed",
-    description: "Speed, efficiency, and optimization are at the core of everything we build. We're committed to delivering blazing-fast, highly-performant solutions.",
-    stats: "Sub-2s Load Times"
+    description:
+      "Speed, efficiency, and optimization are at the core of everything we build. We're committed to delivering blazing-fast, highly-performant solutions.",
+    stats: "Sub-2s Load Times",
   },
   {
     icon: Globe,
     title: "Global Impact",
-    description: "Creating digital experiences that transcend borders and inspire audiences worldwide, making technology accessible to businesses everywhere.",
-    stats: "International Reach"
+    description:
+      "Creating digital experiences that transcend borders and inspire audiences worldwide, making technology accessible to businesses everywhere.",
+    stats: "International Reach",
   },
   {
     icon: Award,
     title: "Excellence Standard",
-    description: "We don't just meet expectations—we exceed them. Our commitment to quality ensures every project meets the highest industry standards.",
-    stats: "Zero Compromises"
-  }
+    description:
+      "We don't just meet expectations—we exceed them. Our commitment to quality ensures every project meets the highest industry standards.",
+    stats: "Zero Compromises",
+  },
 ];
 
 const achievements = [
@@ -155,51 +175,56 @@ const achievements = [
     icon: Trophy,
     title: "Industry Recognition",
     description: "Featured in top web development showcases",
-    value: "Top 1%"
+    value: "Top 1%",
   },
   {
     icon: TrendingUp,
     title: "Client Growth",
     description: "Average business growth after our solutions",
-    value: "300%"
+    value: "300%",
   },
   {
     icon: Clock,
     title: "Delivery Speed",
     description: "Faster than industry average delivery",
-    value: "40%"
+    value: "40%",
   },
   {
     icon: Shield,
     title: "Security Score",
     description: "Perfect security compliance rate",
-    value: "100%"
-  }
+    value: "100%",
+  },
 ];
 
 const companyMission = {
-  mission: "To empower businesses with cutting-edge digital solutions that drive growth, enhance user experiences, and create lasting competitive advantages in the digital landscape.",
-  vision: "To become the global leader in innovative web development, setting new standards for creativity, performance, and client success in the digital agency space.",
-  approach: "We combine technical excellence with creative innovation, ensuring every solution is not just functional, but transformative for our clients' businesses."
+  mission:
+    "To empower businesses with cutting-edge digital solutions that drive growth, enhance user experiences, and create lasting competitive advantages in the digital landscape.",
+  vision:
+    "To become the global leader in innovative web development, setting new standards for creativity, performance, and client success in the digital agency space.",
+  approach:
+    "We combine technical excellence with creative innovation, ensuring every solution is not just functional, but transformative for our clients' businesses.",
 };
 
 const testimonials = [
   {
     name: "Sarah Johnson",
     role: "CEO, TechStart Inc.",
-    content: "WebValor didn't just build us a website—they transformed our entire digital presence. The team's expertise and dedication are unmatched.",
+    content:
+      "WebValor didn't just build us a website—they transformed our entire digital presence. The team's expertise and dedication are unmatched.",
     company: "TechStart Inc.",
     project: "Complete Digital Transformation",
-    result: "300% increase in conversions"
+    result: "300% increase in conversions",
   },
   {
     name: "Michael Chen",
     role: "Founder, EcoMart",
-    content: "Working with WebValor was a game-changer. Their attention to detail and innovative approach helped us stand out in a crowded market.",
+    content:
+      "Working with WebValor was a game-changer. Their attention to detail and innovative approach helped us stand out in a crowded market.",
     company: "EcoMart",
     project: "E-commerce Platform",
-    result: "150% sales growth"
-  }
+    result: "150% sales growth",
+  },
 ];
 
 export default function AboutPage() {
@@ -232,11 +257,13 @@ export default function AboutPage() {
                 </span>
               </h1>
               <p className="text-xl sm:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12">
-                Founded on the belief that exceptional digital experiences should be accessible to every business, 
-                we combine cutting-edge technology with creative innovation to deliver solutions that transform brands and drive growth.
+                Founded on the belief that exceptional digital experiences
+                should be accessible to every business, we combine cutting-edge
+                technology with creative innovation to deliver solutions that
+                transform brands and drive growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button 
+                <Button
                   size="lg"
                   className="gradient-primary text-white px-8 py-4 text-lg hover:shadow-xl transition-all duration-300"
                   onClick={() => router.push("/contact")}
@@ -244,7 +271,11 @@ export default function AboutPage() {
                   Work With Us
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button variant="outline" size="lg" className="px-8 py-4 text-lg">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="px-8 py-4 text-lg"
+                >
                   Our Portfolio
                 </Button>
               </div>
@@ -272,9 +303,21 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {[
-                { title: "Mission", content: companyMission.mission, icon: Target },
-                { title: "Vision", content: companyMission.vision, icon: Globe },
-                { title: "Approach", content: companyMission.approach, icon: Lightbulb }
+                {
+                  title: "Mission",
+                  content: companyMission.mission,
+                  icon: Target,
+                },
+                {
+                  title: "Vision",
+                  content: companyMission.vision,
+                  icon: Globe,
+                },
+                {
+                  title: "Approach",
+                  content: companyMission.approach,
+                  icon: Lightbulb,
+                },
               ].map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -324,7 +367,8 @@ export default function AboutPage() {
                 Our Journey
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                From ambitious startup to trusted digital partner — here&apos;s how we&apos;ve grown and the milestones that shaped our story.
+                From ambitious startup to trusted digital partner — here&apos;s
+                how we&apos;ve grown and the milestones that shaped our story.
               </p>
             </motion.div>
 
@@ -408,7 +452,8 @@ export default function AboutPage() {
                 Meet Our Team
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                The passionate minds behind WebValor, each bringing unique expertise, creativity, and dedication to every project.
+                The passionate minds behind WebValor, each bringing unique
+                expertise, creativity, and dedication to every project.
               </p>
             </motion.div>
 
@@ -452,7 +497,11 @@ export default function AboutPage() {
                         <h4 className="font-semibold mb-3">Expertise:</h4>
                         <div className="flex flex-wrap gap-2">
                           {member.skills.map((skill) => (
-                            <Badge key={skill} variant="outline" className="text-xs">
+                            <Badge
+                              key={skill}
+                              variant="outline"
+                              className="text-xs"
+                            >
                               {skill}
                             </Badge>
                           ))}
@@ -462,12 +511,20 @@ export default function AboutPage() {
                       {/* Stats */}
                       <div className="grid grid-cols-2 gap-4 pt-4 border-t">
                         <div className="text-center">
-                          <div className="font-bold text-primary">{member.experience}</div>
-                          <div className="text-xs text-muted-foreground">Experience</div>
+                          <div className="font-bold text-primary">
+                            {member.experience}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            Experience
+                          </div>
                         </div>
                         <div className="text-center">
-                          <div className="font-bold text-primary">{member.projects}</div>
-                          <div className="text-xs text-muted-foreground">Completed</div>
+                          <div className="font-bold text-primary">
+                            {member.projects}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            Completed
+                          </div>
                         </div>
                       </div>
 
@@ -505,7 +562,8 @@ export default function AboutPage() {
                 Our Core Values
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                These fundamental principles guide every decision we make and shape how we work with our clients and each other.
+                These fundamental principles guide every decision we make and
+                shape how we work with our clients and each other.
               </p>
             </motion.div>
 
@@ -562,7 +620,8 @@ export default function AboutPage() {
                 Achievements & Recognition
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Metrics that matter and recognition that motivates us to keep pushing boundaries
+                Metrics that matter and recognition that motivates us to keep
+                pushing boundaries
               </p>
             </motion.div>
 
@@ -620,7 +679,8 @@ export default function AboutPage() {
                 What Our Clients Say
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Real feedback from real clients who've transformed their businesses with our solutions
+                Real feedback from real clients who've transformed their
+                businesses with our solutions
               </p>
             </motion.div>
 
@@ -644,9 +704,15 @@ export default function AboutPage() {
                       <div className="border-t pt-6">
                         <div className="flex justify-between items-start">
                           <div>
-                            <div className="font-semibold text-lg">{testimonial.name}</div>
-                            <div className="text-muted-foreground">{testimonial.role}</div>
-                            <div className="text-sm text-muted-foreground">{testimonial.company}</div>
+                            <div className="font-semibold text-lg">
+                              {testimonial.name}
+                            </div>
+                            <div className="text-muted-foreground">
+                              {testimonial.role}
+                            </div>
+                            <div className="text-sm text-muted-foreground">
+                              {testimonial.company}
+                            </div>
                           </div>
                           <div className="text-right">
                             <Badge variant="outline" className="mb-2">
@@ -681,11 +747,12 @@ export default function AboutPage() {
                 Ready to Work Together?
               </h2>
               <p className="text-xl sm:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
-                Whether you're a startup with a big vision or an established business ready for digital transformation, 
-                we're here to make it happen. Let's create something amazing together.
+                Whether you're a startup with a big vision or an established
+                business ready for digital transformation, we're here to make it
+                happen. Let's create something amazing together.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button 
+                <Button
                   size="lg"
                   className="gradient-primary text-white px-10 py-5 text-xl hover:shadow-xl transition-all duration-300 animate-pulse-glow"
                   onClick={() => router.push("/contact")}
@@ -693,7 +760,11 @@ export default function AboutPage() {
                   Start a Project
                   <ArrowRight className="w-6 h-6 ml-2" />
                 </Button>
-                <Button variant="outline" size="lg" className="px-10 py-5 text-xl">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="px-10 py-5 text-xl"
+                >
                   Schedule a Call
                 </Button>
               </div>

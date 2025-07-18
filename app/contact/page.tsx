@@ -17,7 +17,7 @@ import {
   Shield,
   Star,
   Users,
-  Zap
+  Zap,
 } from "lucide-react";
 import * as React from "react";
 
@@ -35,9 +35,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  TooltipProvider
-} from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { SectionHeader } from "@/components/ui/section-header";
 import axios from "axios";
 
 const contactMethods = [
@@ -50,7 +49,7 @@ const contactMethods = [
     responseTime: "Within 4 hours",
     availability: "24/7",
     color: "text-blue-500",
-    bgColor: "bg-blue-500/10"
+    bgColor: "bg-blue-500/10",
   },
   {
     icon: Phone,
@@ -61,7 +60,7 @@ const contactMethods = [
     responseTime: "Immediate",
     availability: "Mon-Fri, 9 AM - 6 PM IST",
     color: "text-green-500",
-    bgColor: "bg-green-500/10"
+    bgColor: "bg-green-500/10",
   },
   {
     icon: MessageSquare,
@@ -72,7 +71,7 @@ const contactMethods = [
     responseTime: "Instant",
     availability: "Mon-Fri, 9 AM - 6 PM IST",
     color: "text-purple-500",
-    bgColor: "bg-purple-500/10"
+    bgColor: "bg-purple-500/10",
   },
   {
     icon: Calendar,
@@ -83,16 +82,17 @@ const contactMethods = [
     responseTime: "Same day",
     availability: "Flexible scheduling",
     color: "text-orange-500",
-    bgColor: "bg-orange-500/10"
-  }
+    bgColor: "bg-orange-500/10",
+  },
 ];
 
 const officeInfo = {
   address: "Jaipur, Rajasthan, India",
-  mapLink: "https://www.google.com/maps/place/jaipur/data=!4m2!3m1!1s0x396c4adf4c57e281:0xce1c63a0cf22e09?sa=X&ved=1t:155783&ictx=111",
+  mapLink:
+    "https://www.google.com/maps/place/jaipur/data=!4m2!3m1!1s0x396c4adf4c57e281:0xce1c63a0cf22e09?sa=X&ved=1t:155783&ictx=111",
   timezone: "IST (GMT+5:30)",
   workingHours: "Monday - Friday: 9:00 AM - 6:00 PM",
-  languages: ["English", "Hindi"]
+  languages: ["English", "Hindi"],
 };
 
 const projectTypes = [
@@ -102,7 +102,7 @@ const projectTypes = [
   { value: "e-commerce", label: "E-commerce", icon: Shield },
   { value: "brand-identity", label: "Brand Identity", icon: Star },
   { value: "consultation", label: "Consultation", icon: MessageSquare },
-  { value: "other", label: "Other", icon: Zap }
+  { value: "other", label: "Other", icon: Zap },
 ];
 
 const budgetRanges = [
@@ -110,26 +110,30 @@ const budgetRanges = [
   { value: "25k-50k", label: "₹25k - ₹50k", description: "Medium projects" },
   { value: "50k-100k", label: "₹50k - ₹100k", description: "Large projects" },
   { value: "100k+", label: "₹100k+", description: "Enterprise solutions" },
-  { value: "not-sure", label: "Not sure", description: "Let's discuss" }
+  { value: "not-sure", label: "Not sure", description: "Let's discuss" },
 ];
 
 const faqItems = [
   {
     question: "How quickly can you start my project?",
-    answer: "We typically begin new projects within 1-2 weeks after contract signing, depending on our current workload and project complexity."
+    answer:
+      "We typically begin new projects within 1-2 weeks after contract signing, depending on our current workload and project complexity.",
   },
   {
     question: "Do you offer ongoing support after launch?",
-    answer: "Yes! We provide comprehensive post-launch support including maintenance, updates, and technical assistance to ensure your project continues to perform optimally."
+    answer:
+      "Yes! We provide comprehensive post-launch support including maintenance, updates, and technical assistance to ensure your project continues to perform optimally.",
   },
   {
     question: "What's your typical project timeline?",
-    answer: "Project timelines vary based on scope and complexity. Simple websites take 2-4 weeks, while complex applications can take 8-16 weeks. We'll provide a detailed timeline during our consultation."
+    answer:
+      "Project timelines vary based on scope and complexity. Simple websites take 2-4 weeks, while complex applications can take 8-16 weeks. We'll provide a detailed timeline during our consultation.",
   },
   {
     question: "Can you work with my existing team?",
-    answer: "Absolutely! We collaborate seamlessly with in-house teams, other agencies, and stakeholders to ensure smooth project delivery and knowledge transfer."
-  }
+    answer:
+      "Absolutely! We collaborate seamlessly with in-house teams, other agencies, and stakeholders to ensure smooth project delivery and knowledge transfer.",
+  },
 ];
 
 export default function ContactPage() {
@@ -175,8 +179,8 @@ export default function ContactPage() {
     setErrors({});
 
     try {
-      const response = await axios.post('/api/contact', formData, {
-        headers: { 'Content-Type': 'application/json' },
+      const response = await axios.post("/api/contact", formData, {
+        headers: { "Content-Type": "application/json" },
       });
 
       if (response.status === 201) {
@@ -184,22 +188,26 @@ export default function ContactPage() {
         setTimeout(() => {
           setIsSubmitted(false);
           setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            projectType: '',
-            budget: '',
-            timeline: '',
-            message: '',
+            name: "",
+            email: "",
+            company: "",
+            phone: "",
+            projectType: "",
+            budget: "",
+            timeline: "",
+            message: "",
           });
         }, 3000);
       }
     } catch (error: any) {
       if (error.response) {
-        setErrors({ general: (error.response?.data as { error?: string })?.error || 'Failed to submit form. Please try again.' });
+        setErrors({
+          general:
+            (error.response?.data as { error?: string })?.error ||
+            "Failed to submit form. Please try again.",
+        });
       } else {
-        setErrors({ general: 'An error occurred. Please try again.' });
+        setErrors({ general: "An error occurred. Please try again." });
       }
     } finally {
       setIsSubmitting(false);
@@ -237,19 +245,28 @@ export default function ContactPage() {
                 <span className="block gradient-text">amazing together</span>
               </h1>
               <p className="text-xl sm:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12">
-                Ready to transform your vision into reality? We&apos;d love to hear about your project
-                and discuss how we can help you achieve your goals with cutting-edge digital solutions.
+                Ready to transform your vision into reality? We&apos;d love to
+                hear about your project and discuss how we can help you achieve
+                your goals with cutting-edge digital solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <Button
                   size="lg"
                   className="gradient-primary text-white px-8 py-4 text-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() =>
+                    document
+                      .getElementById("contact-form")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                 >
                   Start a Project
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button variant="outline" size="lg" className="px-8 py-4 text-lg">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="px-8 py-4 text-lg"
+                >
                   <a
                     href="https://calendly.com/jatinsingh098loq2/intro-call"
                     target="_blank"
@@ -279,7 +296,8 @@ export default function ContactPage() {
                 Choose Your Preferred Contact Method
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                We&apos;re available through multiple channels to ensure you can reach us in the way that works best for you
+                We&apos;re available through multiple channels to ensure you can
+                reach us in the way that works best for you
               </p>
             </motion.div>
 
@@ -294,8 +312,16 @@ export default function ContactPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/50 cursor-pointer group"
-                      onClick={() => method.link !== "#" && window.open(method.link, method.link.startsWith('http') ? '_blank' : '_self')}>
+                    <Card
+                      className="h-full hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/50 cursor-pointer group"
+                      onClick={() =>
+                        method.link !== "#" &&
+                        window.open(
+                          method.link,
+                          method.link.startsWith("http") ? "_blank" : "_self",
+                        )
+                      }
+                    >
                       <CardHeader className="text-center pb-4">
                         <motion.div
                           whileHover={{ scale: 1.1, rotate: 5 }}
@@ -311,7 +337,9 @@ export default function ContactPage() {
                         </CardDescription>
                       </CardHeader>
                       <CardContent className="text-center space-y-3">
-                        <div className="font-semibold text-primary">{method.details}</div>
+                        <div className="font-semibold text-primary">
+                          {method.details}
+                        </div>
                         <div className="space-y-2 text-sm text-muted-foreground">
                           <div className="flex items-center justify-center">
                             <Clock className="w-4 h-4 mr-2" />
@@ -344,8 +372,9 @@ export default function ContactPage() {
                   Get in Touch
                 </h2>
                 <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
-                  We&apos;re here to help and answer any questions you might have.
-                  We look forward to hearing from you and discussing your project.
+                  We&apos;re here to help and answer any questions you might
+                  have. We look forward to hearing from you and discussing your
+                  project.
                 </p>
 
                 {/* Office Information */}
@@ -359,19 +388,27 @@ export default function ContactPage() {
                   <CardContent className="space-y-4">
                     <div>
                       <div className="font-semibold">Address</div>
-                      <div className="text-muted-foreground">{officeInfo.address}</div>
+                      <div className="text-muted-foreground">
+                        {officeInfo.address}
+                      </div>
                     </div>
                     <div>
                       <div className="font-semibold">Working Hours</div>
-                      <div className="text-muted-foreground">{officeInfo.workingHours}</div>
+                      <div className="text-muted-foreground">
+                        {officeInfo.workingHours}
+                      </div>
                     </div>
                     <div>
                       <div className="font-semibold">Timezone</div>
-                      <div className="text-muted-foreground">{officeInfo.timezone}</div>
+                      <div className="text-muted-foreground">
+                        {officeInfo.timezone}
+                      </div>
                     </div>
                     <div>
                       <div className="font-semibold">Languages</div>
-                      <div className="text-muted-foreground">{officeInfo.languages.join(", ")}</div>
+                      <div className="text-muted-foreground">
+                        {officeInfo.languages.join(", ")}
+                      </div>
                     </div>
                     <Button variant="outline" className="w-full mt-4">
                       <a
@@ -430,7 +467,8 @@ export default function ContactPage() {
                       Start Your Project
                     </CardTitle>
                     <CardDescription className="text-lg">
-                      Tell us about your project and we&apos;ll get back to you within 24 hours with a detailed proposal.
+                      Tell us about your project and we&apos;ll get back to you
+                      within 24 hours with a detailed proposal.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -445,7 +483,8 @@ export default function ContactPage() {
                           Thank you for reaching out!
                         </h3>
                         <p className="text-muted-foreground text-lg">
-                          We&apos;ve received your message and will get back to you within 24 hours with a detailed response.
+                          We&apos;ve received your message and will get back to
+                          you within 24 hours with a detailed response.
                         </p>
                       </motion.div>
                     ) : errors.general ? (
@@ -455,26 +494,36 @@ export default function ContactPage() {
                         className="text-center py-12 text-red-500"
                       >
                         <Send className="w-16 h-16 text-red-500 mx-auto mb-6" />
-                        <h3 className="font-serif text-xl font-semibold mb-4">Oops! Something went wrong</h3>
-                        <p className="text-muted-foreground">{errors.general}</p>
+                        <h3 className="font-serif text-xl font-semibold mb-4">
+                          Oops! Something went wrong
+                        </h3>
+                        <p className="text-muted-foreground">
+                          {errors.general}
+                        </p>
                       </motion.div>
                     ) : (
                       <TooltipProvider>
                         <form onSubmit={handleSubmit} className="space-y-8">
                           {/* Personal Information */}
                           <div className="space-y-6">
-                            <h4 className="font-semibold text-lg">Personal Information</h4>
+                            <h4 className="font-semibold text-lg">
+                              Personal Information
+                            </h4>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                               <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3 }}
                               >
-                                <Label htmlFor="name" className="text-base">Full Name *</Label>
+                                <Label htmlFor="name" className="text-base">
+                                  Full Name *
+                                </Label>
                                 <Input
                                   id="name"
                                   value={formData.name}
-                                  onChange={(e) => handleChange("name", e.target.value)}
+                                  onChange={(e) =>
+                                    handleChange("name", e.target.value)
+                                  }
                                   className={`mt-2 ${errors.name ? "border-red-500" : ""}`}
                                   placeholder="John Doe"
                                 />
@@ -494,12 +543,16 @@ export default function ContactPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.1 }}
                               >
-                                <Label htmlFor="email" className="text-base">Email Address *</Label>
+                                <Label htmlFor="email" className="text-base">
+                                  Email Address *
+                                </Label>
                                 <Input
                                   id="email"
                                   type="email"
                                   value={formData.email}
-                                  onChange={(e) => handleChange("email", e.target.value)}
+                                  onChange={(e) =>
+                                    handleChange("email", e.target.value)
+                                  }
                                   className={`mt-2 ${errors.email ? "border-red-500" : ""}`}
                                   placeholder="john@example.com"
                                 />
@@ -521,11 +574,15 @@ export default function ContactPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.2 }}
                               >
-                                <Label htmlFor="company" className="text-base">Company/Organization</Label>
+                                <Label htmlFor="company" className="text-base">
+                                  Company/Organization
+                                </Label>
                                 <Input
                                   id="company"
                                   value={formData.company}
-                                  onChange={(e) => handleChange("company", e.target.value)}
+                                  onChange={(e) =>
+                                    handleChange("company", e.target.value)
+                                  }
                                   className="mt-2"
                                   placeholder="Your Company Name"
                                 />
@@ -536,11 +593,15 @@ export default function ContactPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.3 }}
                               >
-                                <Label htmlFor="phone" className="text-base">Phone Number</Label>
+                                <Label htmlFor="phone" className="text-base">
+                                  Phone Number
+                                </Label>
                                 <Input
                                   id="phone"
                                   value={formData.phone}
-                                  onChange={(e) => handleChange("phone", e.target.value)}
+                                  onChange={(e) =>
+                                    handleChange("phone", e.target.value)
+                                  }
                                   className="mt-2"
                                   placeholder="+1 (555) 123-4567"
                                 />
@@ -550,7 +611,9 @@ export default function ContactPage() {
 
                           {/* Project Information */}
                           <div className="space-y-6">
-                            <h4 className="font-semibold text-lg">Project Information</h4>
+                            <h4 className="font-semibold text-lg">
+                              Project Information
+                            </h4>
 
                             <motion.div
                               initial={{ opacity: 0, y: 20 }}
@@ -567,18 +630,32 @@ export default function ContactPage() {
                                       whileHover={{ scale: 1.02 }}
                                       whileTap={{ scale: 0.98 }}
                                     >
-                                      <label className={`flex flex-col items-center p-3 border rounded-lg cursor-pointer transition-all hover:border-primary ${formData.projectType === type.value ? 'border-primary bg-primary/5' : 'border-border'
-                                        }`}>
+                                      <label
+                                        className={`flex flex-col items-center p-3 border rounded-lg cursor-pointer transition-all hover:border-primary ${
+                                          formData.projectType === type.value
+                                            ? "border-primary bg-primary/5"
+                                            : "border-border"
+                                        }`}
+                                      >
                                         <input
                                           type="radio"
                                           name="projectType"
                                           value={type.value}
-                                          checked={formData.projectType === type.value}
-                                          onChange={(e) => handleChange("projectType", e.target.value)}
+                                          checked={
+                                            formData.projectType === type.value
+                                          }
+                                          onChange={(e) =>
+                                            handleChange(
+                                              "projectType",
+                                              e.target.value,
+                                            )
+                                          }
                                           className="sr-only"
                                         />
                                         <Icon className="w-6 h-6 mb-2 text-primary" />
-                                        <span className="text-xs text-center">{type.label}</span>
+                                        <span className="text-xs text-center">
+                                          {type.label}
+                                        </span>
                                       </label>
                                     </motion.div>
                                   );
@@ -592,16 +669,23 @@ export default function ContactPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.5 }}
                               >
-                                <Label htmlFor="budget" className="text-base">Budget Range</Label>
+                                <Label htmlFor="budget" className="text-base">
+                                  Budget Range
+                                </Label>
                                 <select
                                   id="budget"
                                   value={formData.budget}
-                                  onChange={(e) => handleChange("budget", e.target.value)}
+                                  onChange={(e) =>
+                                    handleChange("budget", e.target.value)
+                                  }
                                   className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2"
                                 >
                                   <option value="">Select budget range</option>
                                   {budgetRanges.map((range) => (
-                                    <option key={range.value} value={range.value}>
+                                    <option
+                                      key={range.value}
+                                      value={range.value}
+                                    >
                                       {range.label} - {range.description}
                                     </option>
                                   ))}
@@ -613,16 +697,22 @@ export default function ContactPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.6 }}
                               >
-                                <Label htmlFor="timeline" className="text-base">Timeline</Label>
+                                <Label htmlFor="timeline" className="text-base">
+                                  Timeline
+                                </Label>
                                 <select
                                   id="timeline"
                                   value={formData.timeline}
-                                  onChange={(e) => handleChange("timeline", e.target.value)}
+                                  onChange={(e) =>
+                                    handleChange("timeline", e.target.value)
+                                  }
                                   className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2"
                                 >
                                   <option value="">Select timeline</option>
                                   <option value="asap">ASAP (Rush job)</option>
-                                  <option value="1-month">Within 1 month</option>
+                                  <option value="1-month">
+                                    Within 1 month
+                                  </option>
                                   <option value="2-3-months">2-3 months</option>
                                   <option value="3-6-months">3-6 months</option>
                                   <option value="flexible">Flexible</option>
@@ -637,11 +727,15 @@ export default function ContactPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3, delay: 0.7 }}
                           >
-                            <Label htmlFor="message" className="text-base">Project Details *</Label>
+                            <Label htmlFor="message" className="text-base">
+                              Project Details *
+                            </Label>
                             <Textarea
                               id="message"
                               value={formData.message}
-                              onChange={(e) => handleChange("message", e.target.value)}
+                              onChange={(e) =>
+                                handleChange("message", e.target.value)
+                              }
                               className={`mt-2 min-h-[150px] ${errors.message ? "border-red-500" : ""}`}
                               placeholder="Tell us about your project, goals, specific requirements, and any other details that would help us understand your needs better..."
                             />
@@ -708,7 +802,8 @@ export default function ContactPage() {
                 Frequently Asked Questions
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Quick answers to common questions about our process, timeline, and services
+                Quick answers to common questions about our process, timeline,
+                and services
               </p>
             </motion.div>
 
