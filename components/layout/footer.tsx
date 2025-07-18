@@ -11,7 +11,7 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
-
+import axios, { AxiosError } from "axios";
 import { Button } from "@/components/ui/button";
 
 const footerLinks = {
@@ -43,59 +43,96 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const [email, setEmail] = React.useState("");
+  const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const [success, setSuccess] = React.useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    try {
+      const response = await axios.post("/api/newsletter", { email }, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.status === 201) {
+        setSuccess(true);
+        setEmail("");
+        setTimeout(() => {
+          setSuccess(false);
+        }, 3000);
+      }
+    } catch (error: unknown) {
+      const axiosError = error as AxiosError;
+      setErrors({
+        general:
+          (axiosError.response?.data as { error?: string })?.error ||
+          "Failed to submit form. Please try again.",
+      });
+    }
   };
 
   return (
     <footer className="relative bg-muted/30 border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 items-center">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 items-start">
             {/* Brand Section */}
-            <div className="lg:col-span-1">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <Link href="/" className="flex items-center space-x-2">
-                  <span className="font-brand text-2xl font-bold gradient-text">
-                    Webvalor
-                  </span>
-                </Link>
-                <p className="mt-4 text-sm text-muted-foreground max-w-md">
-                  Creating premium web experiences through motion-first design
-                  and cutting-edge technology. We bring your digital vision to
-                  life.
-                </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <Link href="/" className="flex items-center space-x-2">
+                <span className="font-brand text-2xl font-bold gradient-text">
+                  Webvalor
+                </span>
+              </Link>
+              <p className="mt-4 text-sm text-muted-foreground max-w-md">
+                Creating premium web experiences through motion-first design and cutting-edge technology. We bring your digital vision to life.
+              </p>
 
-                {/* Social Links */}
-                <div className="mt-6 flex space-x-4">
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon;
-                    return (
-                      <motion.div
-                        key={social.name}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                        viewport={{ once: true }}
+              {/* Social Links */}
+              <div className="mt-6 flex space-x-4">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.div
+                      key={social.name}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <Link
+                        href={social.href}
+                        aria-label={social.name}
+                        className="flex h-10 w-10 items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                       >
-                        <Link
-                          href={social.href}
-                          className="flex h-10 w-10 items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-                        >
-                          <Icon className="h-4 w-4" />
-                          <span className="sr-only">{social.name}</span>
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            </div>
+                        <Icon className="h-4 w-4" />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
 
             {/* Services */}
             <motion.div
@@ -148,20 +185,27 @@ export function Footer() {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-serif text-lg font-semibold">Stay Updated</h3>
+              <h3 className="font-serif text-2xl font-semibold">Stay Updated</h3>
               <p className="mt-4 text-sm text-muted-foreground">
                 Subscribe to our newsletter for the latest updates and insights.
               </p>
-              <div className="mt-4 flex space-x-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 rounded-md bg-background px-0.5 py-2 text-sm border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                />
-                <Button size="sm" className="gradient-primary text-white">
-                  Subscribe
-                </Button>
-              </div>
+              <form className="mt-4 space-y-2" onSubmit={handleSubmit}>
+                <div className="flex space-x-2">
+                  <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder="Enter your email"
+                    className="flex-1 rounded-md bg-background px-2 w-full py-2 text-sm border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                  <Button size="sm" className="gradient-primary text-white" type="submit">
+                    Subscribe
+                  </Button>
+                </div>
+                {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+                {errors.general && <p className="text-sm text-red-500">{errors.general}</p>}
+                {success && <p className="text-sm text-green-600">Subscribed successfully!</p>}
+              </form>
             </motion.div>
           </div>
 
@@ -174,9 +218,7 @@ export function Footer() {
             className="mt-12 flex flex-col items-center justify-between border-t border-border pt-8 sm:flex-row"
           >
             <div className="flex flex-wrap items-start gap-4 text-sm text-muted-foreground">
-              <span>
-                © {new Date().getFullYear()} Webvalor. All rights reserved.
-              </span>
+              <span>© {new Date().getFullYear()} Webvalor. All rights reserved.</span>
               <div className="flex gap-4">
                 {footerLinks.legal.map((link) => (
                   <Link

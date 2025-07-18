@@ -112,6 +112,7 @@ export function CTA() {
                     href="https://calendly.com/jatinsingh098loq2/intro-call"
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="mt-4"
                   >
                     Schedule a Call
                   </a>
@@ -133,18 +134,21 @@ export function CTA() {
                     description:
                       "30-minute strategy session to discuss your project",
                     action: "Book Now",
+                    href: "https://calendly.com/jatinsingh098loq2/intro-call"
                   },
                   {
                     icon: Sparkles,
                     title: "Custom Proposal",
                     description: "Detailed project proposal within 48 hours",
                     action: "Get Proposal",
+                    href: "/contact"
                   },
                   {
                     icon: ArrowRight,
                     title: "Quick Start",
                     description: "Begin your project within 1 week",
                     action: "Start Today",
+                    href: "/contact"
                   },
                 ].map((option, index) => {
                   const Icon = option.icon;
@@ -168,7 +172,7 @@ export function CTA() {
                         {option.description}
                       </p>
                       <span className="text-sm text-primary font-medium group-hover:underline"
-                        onClick={() => { router.push("/contact") }}
+                        onClick={() => { router.push(`${option.href}`) }} 
                       >
                         {option.action} →
                       </span>

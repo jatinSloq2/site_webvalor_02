@@ -6,6 +6,7 @@ import { Star, Quote } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { companyStats } from "@/constants";
 
 const testimonials = [
   {
@@ -172,12 +173,7 @@ export function Testimonials() {
           className="mt-16 text-center"
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {[
-              { metric: "150+", label: "Projects Completed" },
-              { metric: "50+", label: "Happy Clients" },
-              { metric: "95%", label: "Client Satisfaction" },
-              { metric: "24/7", label: "Support Available" },
-            ].map((stat, index) => (
+            {companyStats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -187,7 +183,7 @@ export function Testimonials() {
                 className="text-center"
               >
                 <div className="font-brand text-3xl sm:text-4xl font-bold gradient-text mb-2">
-                  {stat.metric}
+                  {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground">
                   {stat.label}

@@ -33,7 +33,7 @@ export function Hero() {
   const router = useRouter();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/30 overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen flex pt-20 justify-center bg-gradient-to-br from-background via-background to-muted/30 overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 pointer-events-none" />
 
@@ -83,7 +83,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-extrabold leading-tight mt-4 sm:mt-6"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-extrabold leading-tight mt-4 sm:mt-6"
         >
           We Build{" "}
           <motion.span
@@ -112,7 +112,7 @@ export function Hero() {
         {/* Subheadline */}
         <motion.p
           variants={textVariants}
-          className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+          className="mt-6 sm:mt-8 text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
         >
           We craft premium digital experiences through motion-first design,
           cutting-edge technology, and captivating storytelling.
@@ -143,7 +143,7 @@ export function Hero() {
         {/* Stats */}
         <motion.div
           variants={textVariants}
-          className="mt-10 sm:mt-14 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-3xl mx-auto"
+          className="mt-15 sm:mt-14 flex sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-3xl mx-auto"
         >
           {[
             { number: "150+", label: "Projects Delivered" },

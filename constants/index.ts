@@ -1,22 +1,22 @@
 import {
+  Award,
   Brain,
+  Clock,
   Cloud,
   Code,
+  Folder,
   Globe,
+  Heart,
+  Lightbulb,
   Palette,
   Rocket,
   Shield,
   Smartphone,
-  Zap,
-  Award,
-  Users,
-  TrendingUp,
   Star,
   Target,
-  Clock,
-  CheckCircle,
-  Heart,
-  Lightbulb,
+  TrendingUp,
+  Users,
+  Zap
 } from "lucide-react";
 
 // ===== SERVICES DATA =====
@@ -337,31 +337,31 @@ export const designTokens = {
 // ===== STATISTICS =====
 export const companyStats = [
   {
-    icon: Award,
-    value: "150+",
+    icon: Folder,
+    value: "15+",
     label: "Projects Delivered",
-    description: "Successfully completed projects across various industries",
+    description: "Completed freelance and personal projects across web and UI design",
     color: "text-primary",
   },
   {
     icon: Users,
-    value: "100+",
+    value: "10+",
     label: "Happy Clients",
-    description: "Satisfied customers worldwide who trust our expertise",
+    description: "Clients served with successful results in various domains",
     color: "text-primary",
   },
   {
     icon: TrendingUp,
-    value: "98%",
+    value: "95%",
     label: "Success Rate",
-    description: "Project completion success rate with exceptional quality",
+    description: "Timely and quality delivery on most projects",
     color: "text-primary",
   },
   {
     icon: Star,
-    value: "5.0",
+    value: "4.9",
     label: "Client Rating",
-    description: "Average client satisfaction rating across all projects",
+    description: "Average rating based on direct client feedback and testimonials",
     color: "text-primary",
   },
 ];
