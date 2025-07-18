@@ -2,22 +2,22 @@
 
 import { motion } from "framer-motion";
 import {
-    ArrowRight,
-    Calendar,
-    CheckCircle,
-    CheckCircle2,
-    Clock,
-    Globe,
-    Headphones,
-    Mail,
-    MapPin,
-    MessageSquare,
-    Phone,
-    Send,
-    Shield,
-    Star,
-    Users,
-    Zap,
+  ArrowRight,
+  Calendar,
+  CheckCircle,
+  CheckCircle2,
+  Clock,
+  Globe,
+  Headphones,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Phone,
+  Send,
+  Shield,
+  Star,
+  Users,
+  Zap,
 } from "lucide-react";
 import * as React from "react";
 
@@ -25,17 +25,17 @@ import { PageHero, PageSection } from "@/components/layout/page-layout";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const contactMethods = [
   {
@@ -197,7 +197,7 @@ export default function ContactPage() {
           });
         }, 3000);
       }
-    } catch (error: AxiosError) {
+    } catch (error: unknown) {
       if (error.response) {
         setErrors({
           general:

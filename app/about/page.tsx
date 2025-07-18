@@ -1,12 +1,10 @@
 import { generateMetadata, pageMetadata } from "@/components/seo/metadata";
 import AboutPage from "./AboutPage";
+import { defaultViewport } from "@/components/seo/viewport";
 
-export const metadata = generateMetadata({
-  title: pageMetadata.about.title,
-  description: pageMetadata.about.description,
-  keywords: pageMetadata.about.keywords,
-  canonical: "/about",
-});
+export const metadata = generateMetadata(pageMetadata.about);
+
+export const viewport = defaultViewport
 
 const page = () => {
   return <AboutPage/>

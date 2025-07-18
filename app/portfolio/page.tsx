@@ -1,13 +1,10 @@
 import { generateMetadata, pageMetadata } from '@/components/seo/metadata';
 import PortfolioPage from './PorfolioPage'
+import { defaultViewport } from '@/components/seo/viewport';
 
 // SEO Metadata
-export const metadata = generateMetadata({
-  title: pageMetadata.portfolio.title,
-  description: pageMetadata.portfolio.description,
-  keywords: pageMetadata.portfolio.keywords,
-  canonical: "/portfolio",
-});
+export const metadata = generateMetadata(pageMetadata.portfolio);
+export const viewport = defaultViewport
 
 const page = () => {
   return <PortfolioPage />

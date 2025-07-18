@@ -8,13 +8,12 @@ import { AboutPreview } from "@/components/sections/about-preview";
 import { Process } from "@/components/sections/procesess";
 import { Testimonials } from "@/components/sections/testimonials";
 import { CTA } from "@/components/sections/cta";
+import { defaultViewport } from "@/components/seo/viewport";
 
-export const metadata = generateMetadata({
-  title: pageMetadata.home.title,
-  description: pageMetadata.home.description,
-  keywords: pageMetadata.home.keywords,
-  canonical: "/",
-});
+export const metadata = generateMetadata(pageMetadata.home);
+
+export const viewport = defaultViewport
+
 
 export default function Home() {
   return (

@@ -106,7 +106,6 @@ export function generateMetadata({
       bing: process.env.BING_VERIFICATION,
     },
 
-    // Canonical URL
     ...(canonical && { alternates: { canonical } }),
 
     // Additional metadata
