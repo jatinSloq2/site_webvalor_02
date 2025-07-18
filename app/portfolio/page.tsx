@@ -21,7 +21,7 @@ import {
   Globe,
   Code,
   Palette,
-  Smartphone
+  Smartphone,
 } from "lucide-react";
 
 import { Navbar } from "@/components/layout/navbar";
@@ -36,65 +36,84 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { SectionHeader } from "@/components/ui/section-header";
+import { StatsGrid } from "@/components/ui/stats-grid";
 import { portfolioItems } from "@/constants";
 import { useRouter } from "next/navigation";
 
 const categories = [
-  { 
-    id: "all", 
-    name: "All Projects", 
+  {
+    id: "all",
+    name: "All Projects",
     count: portfolioItems.length,
     icon: Globe,
-    color: "text-primary"
+    color: "text-primary",
   },
-  { 
-    id: "web-development", 
-    name: "Web Development", 
-    count: portfolioItems.filter(item => item.category === "web-development").length,
+  {
+    id: "web-development",
+    name: "Web Development",
+    count: portfolioItems.filter((item) => item.category === "web-development")
+      .length,
     icon: Code,
-    color: "text-blue-500"
+    color: "text-blue-500",
   },
-  { 
-    id: "mobile", 
-    name: "Mobile Apps", 
-    count: portfolioItems.filter(item => item.category === "mobile").length,
+  {
+    id: "mobile",
+    name: "Mobile Apps",
+    count: portfolioItems.filter((item) => item.category === "mobile").length,
     icon: Smartphone,
-    color: "text-green-500"
+    color: "text-green-500",
   },
-  { 
-    id: "design", 
-    name: "Design & Branding", 
-    count: portfolioItems.filter(item => item.category === "design").length,
+  {
+    id: "design",
+    name: "Design & Branding",
+    count: portfolioItems.filter((item) => item.category === "design").length,
     icon: Palette,
-    color: "text-purple-500"
+    color: "text-purple-500",
   },
 ];
 
 const projectStats = {
   totalProjects: portfolioItems.length,
-  totalClients: new Set(portfolioItems.map(item => item.client)).size,
+  totalClients: new Set(portfolioItems.map((item) => item.client)).size,
   averageProjectDuration: "12 weeks",
-  successRate: "100%"
+  successRate: "100%",
 };
 
 const technologies = [
-  "React", "Next.js", "Node.js", "TypeScript", "MongoDB", "PostgreSQL",
-  "AWS", "Stripe", "Firebase", "React Native", "Figma", "D3.js"
+  "React",
+  "Next.js",
+  "Node.js",
+  "TypeScript",
+  "MongoDB",
+  "PostgreSQL",
+  "AWS",
+  "Stripe",
+  "Firebase",
+  "React Native",
+  "Figma",
+  "D3.js",
 ];
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = React.useState("all");
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [selectedProject, setSelectedProject] = React.useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = React.useState<number | null>(
+    null,
+  );
   const router = useRouter();
 
   const filteredItems = portfolioItems.filter((item) => {
-    const matchesCategory = activeCategory === "all" || item.category === activeCategory;
-    const matchesSearch = searchTerm === "" || 
+    const matchesCategory =
+      activeCategory === "all" || item.category === activeCategory;
+    const matchesSearch =
+      searchTerm === "" ||
       item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
-    
+      item.technologies.some((tech) =>
+        tech.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+
     return matchesCategory && matchesSearch;
   });
 
@@ -125,11 +144,12 @@ export default function PortfolioPage() {
                 </span>
               </h1>
               <p className="text-xl sm:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12">
-                Explore our comprehensive portfolio of successful projects that demonstrate our expertise 
-                in creating exceptional digital experiences across various industries and technologies.
+                Explore our comprehensive portfolio of successful projects that
+                demonstrate our expertise in creating exceptional digital
+                experiences across various industries and technologies.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button 
+                <Button
                   size="lg"
                   className="gradient-primary text-white px-8 py-4 text-lg hover:shadow-xl transition-all duration-300"
                   onClick={() => router.push("/contact")}
@@ -137,7 +157,11 @@ export default function PortfolioPage() {
                   Start Your Project
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button variant="outline" size="lg" className="px-8 py-4 text-lg">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="px-8 py-4 text-lg"
+                >
                   View Case Studies
                 </Button>
               </div>
@@ -150,10 +174,26 @@ export default function PortfolioPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { label: "Projects Completed", value: projectStats.totalProjects, icon: Target },
-                { label: "Happy Clients", value: projectStats.totalClients, icon: Users },
-                { label: "Avg. Duration", value: projectStats.averageProjectDuration, icon: Clock },
-                { label: "Success Rate", value: projectStats.successRate, icon: TrendingUp }
+                {
+                  label: "Projects Completed",
+                  value: projectStats.totalProjects,
+                  icon: Target,
+                },
+                {
+                  label: "Happy Clients",
+                  value: projectStats.totalClients,
+                  icon: Users,
+                },
+                {
+                  label: "Avg. Duration",
+                  value: projectStats.averageProjectDuration,
+                  icon: Clock,
+                },
+                {
+                  label: "Success Rate",
+                  value: projectStats.successRate,
+                  icon: TrendingUp,
+                },
               ].map((stat, index) => {
                 const Icon = stat.icon;
                 return (
@@ -204,7 +244,8 @@ export default function PortfolioPage() {
                 Browse Our Work
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Filter by category or search for specific technologies and projects
+                Filter by category or search for specific technologies and
+                projects
               </p>
             </motion.div>
 
@@ -245,9 +286,9 @@ export default function PortfolioPage() {
                   >
                     <Icon className="w-4 h-4 mr-2" />
                     {category.name}
-                    <Badge 
-                      variant="outline" 
-                      className={`ml-2 ${activeCategory === category.id ? 'border-primary-foreground text-primary-foreground' : ''}`}
+                    <Badge
+                      variant="outline"
+                      className={`ml-2 ${activeCategory === category.id ? "border-primary-foreground text-primary-foreground" : ""}`}
                     >
                       {category.count}
                     </Badge>
@@ -262,7 +303,9 @@ export default function PortfolioPage() {
         <section className="py-8 bg-muted/5">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-6">
-              <h3 className="font-semibold text-lg mb-4">Technologies We Use</h3>
+              <h3 className="font-semibold text-lg mb-4">
+                Technologies We Use
+              </h3>
               <div className="flex flex-wrap justify-center gap-2">
                 {technologies.map((tech) => (
                   <motion.button
@@ -288,11 +331,18 @@ export default function PortfolioPage() {
                 animate={{ opacity: 1 }}
                 className="text-center py-16"
               >
-                <h3 className="text-2xl font-semibold mb-4">No projects found</h3>
+                <h3 className="text-2xl font-semibold mb-4">
+                  No projects found
+                </h3>
                 <p className="text-muted-foreground mb-6">
                   Try adjusting your search or filter criteria
                 </p>
-                <Button onClick={() => { setSearchTerm(""); setActiveCategory("all"); }}>
+                <Button
+                  onClick={() => {
+                    setSearchTerm("");
+                    setActiveCategory("all");
+                  }}
+                >
                   Clear Filters
                 </Button>
               </motion.div>
@@ -311,7 +361,11 @@ export default function PortfolioPage() {
                       transition={{ duration: 0.5 }}
                       layout
                       className="group cursor-pointer"
-                      onClick={() => setSelectedProject(selectedProject === item.id ? null : item.id)}
+                      onClick={() =>
+                        setSelectedProject(
+                          selectedProject === item.id ? null : item.id,
+                        )
+                      }
                     >
                       <Card className="overflow-hidden hover:shadow-2xl transition-all duration-500 border-border/50 hover:border-primary/50">
                         {/* Project Image/Placeholder */}
@@ -354,8 +408,14 @@ export default function PortfolioPage() {
 
                           {/* Category Badge */}
                           <div className="absolute top-4 left-4">
-                            <Badge variant="secondary" className="bg-black/50 text-white">
-                              {categories.find((c) => c.id === item.category)?.name}
+                            <Badge
+                              variant="secondary"
+                              className="bg-black/50 text-white"
+                            >
+                              {
+                                categories.find((c) => c.id === item.category)
+                                  ?.name
+                              }
                             </Badge>
                           </div>
 
@@ -374,7 +434,8 @@ export default function PortfolioPage() {
                             <div className="absolute bottom-4 left-4">
                               <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30">
                                 <Award className="w-3 h-3 mr-1" />
-                                {item.awards.length} Award{item.awards.length > 1 ? 's' : ''}
+                                {item.awards.length} Award
+                                {item.awards.length > 1 ? "s" : ""}
                               </Badge>
                             </div>
                           )}
@@ -398,7 +459,9 @@ export default function PortfolioPage() {
                         <CardContent className="space-y-6">
                           {/* Technologies */}
                           <div>
-                            <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">Technologies Used</h4>
+                            <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">
+                              Technologies Used
+                            </h4>
                             <div className="flex flex-wrap gap-2">
                               {item.technologies.slice(0, 6).map((tech) => (
                                 <Badge
@@ -423,22 +486,34 @@ export default function PortfolioPage() {
                               <div className="flex items-center justify-center mb-1">
                                 <Calendar className="w-4 h-4 text-muted-foreground" />
                               </div>
-                              <div className="text-sm font-medium">{item.duration}</div>
-                              <div className="text-xs text-muted-foreground">Duration</div>
+                              <div className="text-sm font-medium">
+                                {item.duration}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                Duration
+                              </div>
                             </div>
                             <div className="text-center">
                               <div className="flex items-center justify-center mb-1">
                                 <Users className="w-4 h-4 text-muted-foreground" />
                               </div>
-                              <div className="text-sm font-medium">{item.teamSize}</div>
-                              <div className="text-xs text-muted-foreground">Team</div>
+                              <div className="text-sm font-medium">
+                                {item.teamSize}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                Team
+                              </div>
                             </div>
                             <div className="text-center">
                               <div className="flex items-center justify-center mb-1">
                                 <Star className="w-4 h-4 text-yellow-500" />
                               </div>
-                              <div className="text-sm font-medium">{item.client}</div>
-                              <div className="text-xs text-muted-foreground">Client</div>
+                              <div className="text-sm font-medium">
+                                {item.client}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                Client
+                              </div>
                             </div>
                           </div>
 
@@ -454,7 +529,9 @@ export default function PortfolioPage() {
                               >
                                 {/* Detailed Description */}
                                 <div>
-                                  <h4 className="font-semibold mb-3">Project Overview</h4>
+                                  <h4 className="font-semibold mb-3">
+                                    Project Overview
+                                  </h4>
                                   <p className="text-muted-foreground leading-relaxed">
                                     {item.longDescription}
                                   </p>
@@ -463,26 +540,43 @@ export default function PortfolioPage() {
                                 {/* Results/Impact */}
                                 {item.results && (
                                   <div>
-                                    <h4 className="font-semibold mb-3">Project Results</h4>
+                                    <h4 className="font-semibold mb-3">
+                                      Project Results
+                                    </h4>
                                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                      {Object.entries(item.results).map(([key, value]) => (
-                                        <div key={key} className="text-center p-3 bg-muted/50 rounded-lg">
-                                          <div className="font-bold text-primary text-lg">{value}</div>
-                                          <div className="text-xs text-muted-foreground capitalize">
-                                            {key.replace(/([A-Z])/g, ' $1').toLowerCase()}
+                                      {Object.entries(item.results).map(
+                                        ([key, value]) => (
+                                          <div
+                                            key={key}
+                                            className="text-center p-3 bg-muted/50 rounded-lg"
+                                          >
+                                            <div className="font-bold text-primary text-lg">
+                                              {value}
+                                            </div>
+                                            <div className="text-xs text-muted-foreground capitalize">
+                                              {key
+                                                .replace(/([A-Z])/g, " $1")
+                                                .toLowerCase()}
+                                            </div>
                                           </div>
-                                        </div>
-                                      ))}
+                                        ),
+                                      )}
                                     </div>
                                   </div>
                                 )}
 
                                 {/* All Technologies */}
                                 <div>
-                                  <h4 className="font-semibold mb-3">Complete Tech Stack</h4>
+                                  <h4 className="font-semibold mb-3">
+                                    Complete Tech Stack
+                                  </h4>
                                   <div className="flex flex-wrap gap-2">
                                     {item.technologies.map((tech) => (
-                                      <Badge key={tech} variant="outline" className="text-xs">
+                                      <Badge
+                                        key={tech}
+                                        variant="outline"
+                                        className="text-xs"
+                                      >
                                         {tech}
                                       </Badge>
                                     ))}
@@ -492,12 +586,19 @@ export default function PortfolioPage() {
                                 {/* Awards */}
                                 {item.awards.length > 0 && (
                                   <div>
-                                    <h4 className="font-semibold mb-3">Awards & Recognition</h4>
+                                    <h4 className="font-semibold mb-3">
+                                      Awards & Recognition
+                                    </h4>
                                     <div className="space-y-2">
                                       {item.awards.map((award) => (
-                                        <div key={award} className="flex items-center">
+                                        <div
+                                          key={award}
+                                          className="flex items-center"
+                                        >
                                           <Award className="w-4 h-4 mr-2 text-yellow-500" />
-                                          <span className="text-sm">{award}</span>
+                                          <span className="text-sm">
+                                            {award}
+                                          </span>
                                         </div>
                                       ))}
                                     </div>
@@ -506,7 +607,7 @@ export default function PortfolioPage() {
 
                                 {/* Action Buttons */}
                                 <div className="flex gap-4 pt-4">
-                                  <Button 
+                                  <Button
                                     className="flex-1 gradient-primary text-white"
                                     onClick={(e) => {
                                       e.stopPropagation();
@@ -517,7 +618,7 @@ export default function PortfolioPage() {
                                     View Live Project
                                   </Button>
                                   {item.githubUrl !== "#" && (
-                                    <Button 
+                                    <Button
                                       variant="outline"
                                       className="flex-1"
                                       onClick={(e) => {
@@ -558,11 +659,12 @@ export default function PortfolioPage() {
                 Ready to Create Your Success Story?
               </h2>
               <p className="text-xl sm:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
-                Let&apos;s work together to bring your vision to life and create something that stands out 
-                in your industry. Join our portfolio of successful clients.
+                Let&apos;s work together to bring your vision to life and create
+                something that stands out in your industry. Join our portfolio
+                of successful clients.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button 
+                <Button
                   size="lg"
                   className="gradient-primary text-white px-10 py-5 text-xl hover:shadow-xl transition-all duration-300 animate-pulse-glow"
                   onClick={() => router.push("/contact")}
@@ -570,7 +672,11 @@ export default function PortfolioPage() {
                   Start Your Project
                   <ArrowRight className="w-6 h-6 ml-2" />
                 </Button>
-                <Button variant="outline" size="lg" className="px-10 py-5 text-xl">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="px-10 py-5 text-xl"
+                >
                   Download Portfolio PDF
                 </Button>
               </div>
