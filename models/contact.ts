@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-// Interface for TypeScript type checking
 export interface IContact extends Document {
   name: string;
   email: string;
@@ -76,7 +75,6 @@ const contactSchema = new Schema<IContact>(
   }
 );
 
-// Export the model
 const Contact =
   mongoose.models.Contact || mongoose.model<IContact>("Contact", contactSchema);
 
