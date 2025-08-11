@@ -18,7 +18,7 @@ export function generateMetadata({
   description,
   keywords = [],
   canonical,
-  ogImage = "/og-image.jpg",
+  ogImage = "/og-image.png",
   ogType = "website",
   twitterCard = "summary_large_image",
   author = "WebValor Creative Agency",
