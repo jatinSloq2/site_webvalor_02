@@ -39,7 +39,7 @@ const socialLinks = [
   { name: "Instagram", href: "#", icon: Instagram },
   { name: "LinkedIn", href: "#", icon: Linkedin },
   { name: "GitHub", href: "#", icon: Github },
-  { name: "Email", href: "mailto:hello@webvalor.com", icon: Mail },
+  { name: "Email", href: "mailto:webvalor@outlook.com", icon: Mail },
 ];
 
 export function Footer() {

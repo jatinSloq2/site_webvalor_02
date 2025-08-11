@@ -142,6 +142,8 @@ export default function ContactPage() {
     }
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
+    } else if (formData.message.trim().split(/\s+/).length < 10) {
+      newErrors.message = "Message must be at least 10 words long";
     }
 
     setErrors(newErrors);
@@ -593,8 +595,8 @@ export default function ContactPage() {
                                 >
                                   <label
                                     className={`flex flex-col items-center p-2 sm:p-3 border rounded-lg cursor-pointer transition-all hover:border-primary ${formData.projectType === type.value
-                                        ? "border-primary bg-primary/5"
-                                        : "border-border"
+                                      ? "border-primary bg-primary/5"
+                                      : "border-border"
                                       }`}
                                   >
                                     <input

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LucideIcon, ArrowRight, CheckCircle, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, LucideIcon, Star } from "lucide-react";
 import * as React from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -230,7 +230,7 @@ export function ServiceCard({
                 )}
 
                 {/* Project Stats */}
-                {showStats && (
+                {/* {showStats && (
                   <div
                     className={`grid grid-cols-2 gap-4 pt-4 border-t border-border/50`}
                   >
@@ -259,7 +259,7 @@ export function ServiceCard({
                       </div>
                     </div>
                   </div>
-                )}
+                )} */}
 
                 {/* CTA Button */}
                 <motion.div

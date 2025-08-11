@@ -33,7 +33,7 @@ export function Hero() {
   const router = useRouter();
 
   return (
-    <section className="relative min-h-screen flex pt-20 justify-center bg-gradient-to-br from-background via-background to-muted/30 overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen flex pt-10 justify-center bg-gradient-to-br from-background via-background to-muted/30 overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 pointer-events-none" />
 
@@ -143,7 +143,7 @@ export function Hero() {
         {/* Stats */}
         <motion.div
           variants={textVariants}
-          className="mt-15 sm:mt-14 flex sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-3xl mx-auto"
+          className="mt-10 sm:mt-8 flex sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-3xl mx-auto"
         >
           {[
             { number: "150+", label: "Projects Delivered" },
