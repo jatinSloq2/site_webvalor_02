@@ -2,66 +2,39 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import {
-    ArrowRight,
-    Calendar,
-    CheckCircle2,
-    Clock,
-    Star
+  ArrowRight,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Star
 } from "lucide-react";
 import * as React from "react";
 
 import {
-    CTASection,
-    PageHero,
-    PageSection,
+  CTASection,
+  PageHero,
+  PageSection,
 } from "@/components/layout/page-layout";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { ServiceCard } from "@/components/ui/service-card";
 import {
-    commonFeatures,
-    serviceCategories,
-    services,
-    whyChooseUs,
+  commonFeatures,
+  serviceCategories,
+  services,
+  whyChooseUs,
 } from "@/constants";
 import { useRouter } from "next/navigation";
-
-
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    role: "CEO, TechStart",
-    content:
-      "WebValor transformed our vision into a beautiful, high-performing platform that exceeded our expectations.",
-    rating: 5,
-    project: "SaaS Platform Development",
-  },
-  {
-    name: "Michael Chen",
-    role: "Founder, EcoMart",
-    content:
-      "The team's attention to detail and technical expertise helped us launch our e-commerce platform successfully.",
-    rating: 5,
-    project: "E-commerce Development",
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Marketing Director, Luxe Brand",
-    content:
-      "Our new brand identity and website have significantly improved our market presence and customer engagement.",
-    rating: 5,
-    project: "Brand Identity & Web Design",
-  },
-];
+import axios from "axios";
 
 export default function ServicesPage() {
   // const [expandedCard, setExpandedCard] = React.useState<number | null>(null);
@@ -71,17 +44,41 @@ export default function ServicesPage() {
   // const toggleCard = (index: number) => {
   //   setExpandedCard(expandedCard === index ? null : index);
   // };
+  const [testimonials, setTestimonials] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    async function fetchTestimonials() {
+      try {
+        const res = await axios.get("/api/get/testimonial");
+        console.log("Fetched data:", res.data);
+        if (Array.isArray(res.data?.data)) {
+          console.log("Loaded testimonials:", res.data.data);
+          setTestimonials(res.data.data);
+        } else {
+          console.error("Unexpected data format:", res.data);
+          setTestimonials([]); // fallback to empty
+        }
+      } catch (error) {
+        console.error("Error loading testimonials:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTestimonials();
+  }, []);
 
   const filteredServices =
     selectedCategory === "all"
       ? services
       : services.filter((service) =>
-          serviceCategories.find(
-            (cat) =>
-              cat.services.includes(service.title) &&
-              cat.title.toLowerCase().replace(" ", "-") === selectedCategory,
-          ),
-        );
+        serviceCategories.find(
+          (cat) =>
+            cat.services.includes(service.title) &&
+            cat.title.toLowerCase().replace(" ", "-") === selectedCategory,
+        ),
+      );
 
   return (
     <PageWrapper>
@@ -182,7 +179,7 @@ export default function ServicesPage() {
               key={category.title}
               variant={
                 selectedCategory ===
-                category.title.toLowerCase().replace(" ", "-")
+                  category.title.toLowerCase().replace(" ", "-")
                   ? "default"
                   : "outline"
               }
@@ -385,9 +382,9 @@ export default function ServicesPage() {
                     <div className="text-xs sm:text-sm text-muted-foreground">
                       {testimonial.role}
                     </div>
-                    <Badge variant="outline" className="mt-2 text-xs">
+                    {testimonial.project && (<Badge variant="outline" className="mt-2 text-xs">
                       {testimonial.project}
-                    </Badge>
+                    </Badge>)}
                   </div>
                 </CardContent>
               </Card>

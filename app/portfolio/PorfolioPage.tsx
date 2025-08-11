@@ -2,83 +2,46 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import {
-    ArrowRight,
-    Award,
-    Calendar,
-    Clock,
-    Code,
-    ExternalLink,
-    Eye,
-    Github,
-    Globe,
-    Palette,
-    Search,
-    Smartphone,
-    Star,
-    Target,
-    TrendingUp,
-    Users
+  ArrowRight,
+  Award,
+  Calendar,
+  Clock,
+  Code,
+  ExternalLink,
+  Eye,
+  Github,
+  Globe,
+  Palette,
+  Search,
+  Smartphone,
+  Star,
+  Target,
+  TrendingUp,
+  Users
 } from "lucide-react";
 import * as React from "react";
 
 import {
-    CTASection,
-    PageHero,
-    PageSection,
+  CTASection,
+  PageHero,
+  PageSection,
 } from "@/components/layout/page-layout";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { portfolioItems } from "@/constants";
+// import { portfolioItems } from "@/constants";
 import { useRouter } from "next/navigation";
-
-
-const categories = [
-  {
-    id: "all",
-    name: "All Projects",
-    count: portfolioItems.length,
-    icon: Globe,
-    color: "text-primary",
-  },
-  {
-    id: "web-development",
-    name: "Web Development",
-    count: portfolioItems.filter((item) => item.category === "web-development")
-      .length,
-    icon: Code,
-    color: "text-blue-500",
-  },
-  {
-    id: "mobile",
-    name: "Mobile Apps",
-    count: portfolioItems.filter((item) => item.category === "mobile").length,
-    icon: Smartphone,
-    color: "text-green-500",
-  },
-  {
-    id: "design",
-    name: "Design & Branding",
-    count: portfolioItems.filter((item) => item.category === "design").length,
-    icon: Palette,
-    color: "text-purple-500",
-  },
-];
-
-const projectStats = {
-  totalProjects: portfolioItems.length,
-  totalClients: new Set(portfolioItems.map((item) => item.client)).size,
-  averageProjectDuration: "12 weeks",
-  successRate: "100%",
-};
+import Image from "next/image";
+import { PortfolioItemType, PortfolioResponseType } from "@/components/sections/portfolio";
+import axios from "axios";
 
 const technologies = [
   "React",
@@ -101,7 +64,29 @@ export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = React.useState<number | null>(
     null,
   );
+  const [portfolioItems, setPortfolioItems] = React.useState<PortfolioItemType[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const router = useRouter();
+
+  React.useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await axios.get<PortfolioResponseType>("/api/get/projects");
+        if (res.data.success) {
+          setPortfolioItems(res.data.data);
+          console.log(res)
+        } else {
+          throw new Error("Failed to fetch projects");
+        }
+      } catch (err: any) {
+        setError(err.response?.data?.error || err.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   const filteredItems = portfolioItems.filter((item) => {
     const matchesCategory =
@@ -116,6 +101,46 @@ export default function PortfolioPage() {
 
     return matchesCategory && matchesSearch;
   });
+
+  const projectStats = {
+    totalProjects: portfolioItems.length,
+    totalClients: new Set(portfolioItems.map((item) => item.client)).size,
+    averageProjectDuration: "12 weeks",
+    successRate: "100%",
+  };
+
+  const categories = [
+    {
+      id: "all",
+      name: "All Projects",
+      count: portfolioItems.length,
+      icon: Globe,
+      color: "text-primary",
+    },
+    {
+      id: "web-development",
+      name: "Web Development",
+      count: portfolioItems.filter((item) => item.category === "web-development")
+        .length,
+      icon: Code,
+      color: "text-blue-500",
+    },
+    {
+      id: "mobile",
+      name: "Mobile Apps",
+      count: portfolioItems.filter((item) => item.category === "mobile").length,
+      icon: Smartphone,
+      color: "text-green-500",
+    },
+    {
+      id: "design",
+      name: "Design & Branding",
+      count: portfolioItems.filter((item) => item.category === "design").length,
+      icon: Palette,
+      color: "text-purple-500",
+    },
+  ];
+
 
   return (
     <PageWrapper>
@@ -134,7 +159,7 @@ export default function PortfolioPage() {
         }}
         secondaryAction={{
           text: "View Case Studies",
-          onClick: () => {},
+          onClick: () => { },
         }}
       />
 
@@ -239,11 +264,10 @@ export default function PortfolioPage() {
               <motion.button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
-                  activeCategory === category.id
-                    ? "bg-primary text-primary-foreground shadow-lg"
-                    : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
-                }`}
+                className={`flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${activeCategory === category.id
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
+                  }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -311,9 +335,9 @@ export default function PortfolioPage() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12"
           >
             <AnimatePresence mode="wait">
-              {filteredItems.map((item) => (
+              {filteredItems.map((item, index) => (
                 <motion.div
-                  key={item.id}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -329,10 +353,15 @@ export default function PortfolioPage() {
                   <Card className="overflow-hidden hover:shadow-2xl transition-all duration-500 border-border/50 hover:border-primary/50">
                     {/* Project Image/Placeholder */}
                     <div className="relative h-48 sm:h-64 lg:h-80 overflow-hidden">
-                      <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                        <div className="text-6xl sm:text-8xl font-brand font-bold text-primary/30">
-                          {item.title.charAt(0)}
-                        </div>
+                      <div className="w-full h-full relative">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover"
+                          sizes="100vw"
+                          priority={false} // or true if this is above the fold
+                        />
                       </div>
 
                       {/* Overlay with Actions */}
@@ -496,28 +525,10 @@ export default function PortfolioPage() {
                             {/* Results/Impact */}
                             {item.results && (
                               <div>
-                                <h4 className="font-semibold mb-3">
-                                  Project Results
-                                </h4>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                  {Object.entries(item.results).map(
-                                    ([key, value]) => (
-                                      <div
-                                        key={key}
-                                        className="text-center p-3 bg-muted/50 rounded-lg"
-                                      >
-                                        <div className="font-bold text-primary text-base sm:text-lg">
-                                          {value}
-                                        </div>
-                                        <div className="text-xs text-muted-foreground capitalize">
-                                          {key
-                                            .replace(/([A-Z])/g, " $1")
-                                            .toLowerCase()}
-                                        </div>
-                                      </div>
-                                    ),
-                                  )}
-                                </div>
+                                <h4 className="font-semibold mb-3">Project Results</h4>
+                                <p className="bg-muted/50 text-muted-foreground text-sm p-4 rounded">
+                                  {item.results}
+                                </p>
                               </div>
                             )}
 
@@ -607,7 +618,7 @@ export default function PortfolioPage() {
         }}
         secondaryAction={{
           text: "Download Portfolio PDF",
-          onClick: () => {},
+          onClick: () => { },
         }}
         features={[
           "Free project consultation",
