@@ -723,7 +723,62 @@ export const whyChooseUs = [
   },
 ];
 
+
+export const faqItems = [
+  {
+    question: "How quickly can you start my project?",
+    answer:
+      "We typically begin new projects within 1–2 weeks after contract signing, depending on our current workload and the complexity of your project.",
+  },
+  {
+    question: "Do you offer ongoing support after launch?",
+    answer:
+      "Yes! We provide comprehensive post-launch support including maintenance, updates, security monitoring, and technical assistance to keep your website or application performing optimally.",
+  },
+  {
+    question: "What's your typical project timeline?",
+    answer:
+      "Timelines depend on scope and complexity. Simple business websites take 2–4 weeks, while complex web applications can take 8–16 weeks. We provide a detailed project plan during the consultation stage.",
+  },
+  {
+    question: "Can you work with my existing team?",
+    answer:
+      "Absolutely! We collaborate seamlessly with in-house teams, marketing agencies, and other stakeholders to ensure smooth project delivery and efficient knowledge transfer.",
+  },
+  {
+    question: "Do you work with both startups and established businesses?",
+    answer:
+      "Yes, we work with clients of all sizes — from startups looking to establish an online presence to large enterprises in need of custom solutions.",
+  },
+  {
+    question: "Which technologies do you specialize in?",
+    answer:
+      "We specialize in modern web technologies such as HTML5, CSS3, JavaScript (React, Vue, Angular), Node.js, Express.js, PHP, Laravel, and CMS platforms like WordPress and Shopify.",
+  },
+  {
+    question: "Can you redesign my existing website?",
+    answer:
+      "Of course! We can modernize your website’s design, improve its performance, and optimize it for SEO and mobile responsiveness without losing your brand identity.",
+  },
+  {
+    question: "Do you provide SEO and performance optimization?",
+    answer:
+      "Yes, all our projects follow best practices for SEO and site speed. We also offer dedicated SEO services to help improve your search engine rankings.",
+  },
+  {
+    question: "Will my website be mobile-friendly?",
+    answer:
+      "Yes, every website we create is fully responsive, ensuring it looks and works perfectly on all devices — desktops, tablets, and smartphones.",
+  },
+  {
+    question: "Can you integrate third-party tools and APIs?",
+    answer:
+      "Yes, we have extensive experience integrating payment gateways, CRMs, analytics tools, social media platforms, and other third-party APIs to extend your website’s functionality.",
+  },
+];
+
 export default {
+  faqItems,
   services,
   designTokens,
   companyStats,

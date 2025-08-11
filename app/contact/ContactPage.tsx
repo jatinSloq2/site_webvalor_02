@@ -35,6 +35,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { faqItems } from "@/constants";
 import axios from "axios";
 
 const contactMethods = [
@@ -111,28 +112,7 @@ const budgetRanges = [
   { value: "not-sure", label: "Not sure", description: "Let's discuss" },
 ];
 
-const faqItems = [
-  {
-    question: "How quickly can you start my project?",
-    answer:
-      "We typically begin new projects within 1-2 weeks after contract signing, depending on our current workload and project complexity.",
-  },
-  {
-    question: "Do you offer ongoing support after launch?",
-    answer:
-      "Yes! We provide comprehensive post-launch support including maintenance, updates, and technical assistance to ensure your project continues to perform optimally.",
-  },
-  {
-    question: "What's your typical project timeline?",
-    answer:
-      "Project timelines vary based on scope and complexity. Simple websites take 2-4 weeks, while complex applications can take 8-16 weeks. We'll provide a detailed timeline during our consultation.",
-  },
-  {
-    question: "Can you work with my existing team?",
-    answer:
-      "Absolutely! We collaborate seamlessly with in-house teams, other agencies, and stakeholders to ensure smooth project delivery and knowledge transfer.",
-  },
-];
+
 
 export default function ContactPage() {
   const [formData, setFormData] = React.useState({
@@ -612,11 +592,10 @@ export default function ContactPage() {
                                   whileTap={{ scale: 0.98 }}
                                 >
                                   <label
-                                    className={`flex flex-col items-center p-2 sm:p-3 border rounded-lg cursor-pointer transition-all hover:border-primary ${
-                                      formData.projectType === type.value
+                                    className={`flex flex-col items-center p-2 sm:p-3 border rounded-lg cursor-pointer transition-all hover:border-primary ${formData.projectType === type.value
                                         ? "border-primary bg-primary/5"
                                         : "border-border"
-                                    }`}
+                                      }`}
                                   >
                                     <input
                                       type="radio"
