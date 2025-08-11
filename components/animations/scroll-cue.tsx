@@ -22,7 +22,7 @@ export function ScrollCue({ targetId }: ScrollCueProps) {
 
   return (
     <motion.div
-      className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
+      className="absolute bottom-22 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1 }}

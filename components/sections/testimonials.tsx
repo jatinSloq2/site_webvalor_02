@@ -1,54 +1,13 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { easeOut, motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    role: "CEO, TechFlow Solutions",
-    company: "TechFlow",
-    content:
-      "Webvalor completely transformed our digital presence. Their attention to detail and innovative approach exceeded all our expectations. The results speak for themselves - 300% increase in conversions!",
-    rating: 5,
-    image: "/api/placeholder/80/80",
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    role: "Founder, EcoMart",
-    company: "EcoMart",
-    content:
-      "Working with Webvalor was a game-changer. They didn&apos;t just build us a website, they created a complete digital experience that our customers love. Professional, creative, and results-driven.",
-    rating: 5,
-    image: "/api/placeholder/80/80",
-  },
-  {
-    id: 3,
-    name: "Emily Rodriguez",
-    role: "Marketing Director, InvestTech",
-    company: "InvestTech",
-    content:
-      "The team at Webvalor delivered beyond what we imagined. Their motion-first approach and attention to user experience resulted in a 200% increase in user engagement. Highly recommended!",
-    rating: 5,
-    image: "/api/placeholder/80/80",
-  },
-  {
-    id: 4,
-    name: "David Thompson",
-    role: "Co-founder, MindSpace",
-    company: "MindSpace",
-    content:
-      "Exceptional work from start to finish. Webvalor understood our vision and brought it to life with stunning animations and flawless functionality. Our app now has over 100k downloads!",
-    rating: 5,
-    image: "/api/placeholder/80/80",
-  },
-];
+import { companyStats } from "@/constants";
+import axios from "axios";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -78,6 +37,31 @@ const cardVariants = {
 };
 
 export function Testimonials() {
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchTestimonials() {
+      try {
+        const res = await axios.get("/api/get/testimonial");
+        console.log("Fetched data:", res.data);
+        if (Array.isArray(res.data?.data)) {
+          console.log("Loaded testimonials:", res.data.data);
+          setTestimonials(res.data.data);
+        } else {
+          console.error("Unexpected data format:", res.data);
+          setTestimonials([]); // fallback to empty
+        }
+      } catch (error) {
+        console.error("Error loading testimonials:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTestimonials();
+  }, []);
+
   return (
     <section className="py-24 bg-gradient-to-b from-muted/20 to-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -109,58 +93,65 @@ export function Testimonials() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {testimonials.map((testimonial) => (
-            <motion.div
-              key={testimonial.id}
-              variants={cardVariants}
-              className="group"
-            >
-              <Card className="h-full glass hover:glass-dark dark:hover:glass transition-all duration-300 hover:scale-105 hover:shadow-2xl border-border/50 hover:border-primary/50">
-                <CardContent className="p-8">
-                  {/* Quote Icon */}
-                  <div className="mb-6">
-                    <Quote className="w-8 h-8 text-primary opacity-50" />
-                  </div>
-
-                  {/* Testimonial Content */}
-                  <blockquote className="text-lg leading-relaxed mb-6 text-muted-foreground">
-                    &quot;{testimonial.content}&quot;
-                  </blockquote>
-
-                  {/* Rating */}
-                  <div className="flex items-center space-x-1 mb-6">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
-                  </div>
-
-                  {/* Client Info */}
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                      <span className="text-lg font-bold text-primary">
-                        {testimonial.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </span>
+          {loading ? (
+            <p className="text-center col-span-2">Loading testimonials...</p>
+          ) : (
+            testimonials.map((testimonial) => (
+              <motion.div
+                key={testimonial._id || testimonial.id}
+                variants={cardVariants}
+                className="group"
+              >
+                <Card className="h-full glass hover:glass-dark dark:hover:glass transition-all duration-300 hover:scale-105 hover:shadow-2xl border-border/50 hover:border-primary/50">
+                  <CardContent className="p-8">
+                    <div className="mb-6">
+                      <Quote className="w-8 h-8 text-primary opacity-50" />
                     </div>
-                    <div>
-                      <div className="font-semibold">{testimonial.name}</div>
-                      <div className="text-sm text-muted-foreground">
-                        {testimonial.role}
+
+                    <blockquote className="text-lg leading-relaxed mb-6 text-muted-foreground">
+                      &quot;{testimonial.content}&quot;
+                    </blockquote>
+
+                    <div className="flex items-center space-x-1 mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                        />
+                      ))}
+                    </div>
+
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                        <span className="text-lg font-bold text-primary">
+                          {testimonial.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </span>
                       </div>
-                      <div className="text-sm text-primary font-medium">
-                        {testimonial.company}
+                      <div>
+                        <div className="font-semibold">{testimonial.name}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {testimonial.role}
+                        </div>
+                        {testimonial.company && (
+                          <div className="text-sm text-primary font-medium">
+                            {testimonial.company}
+                          </div>
+                        )}
+                        {testimonial.project && !testimonial.company && (
+                          <div className="text-sm text-primary font-medium">
+                            {testimonial.project}
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))
+          )}
         </motion.div>
 
         {/* Trust Badges */}
@@ -172,12 +163,7 @@ export function Testimonials() {
           className="mt-16 text-center"
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {[
-              { metric: "150+", label: "Projects Completed" },
-              { metric: "50+", label: "Happy Clients" },
-              { metric: "95%", label: "Client Satisfaction" },
-              { metric: "24/7", label: "Support Available" },
-            ].map((stat, index) => (
+            {companyStats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -187,7 +173,7 @@ export function Testimonials() {
                 className="text-center"
               >
                 <div className="font-brand text-3xl sm:text-4xl font-bold gradient-text mb-2">
-                  {stat.metric}
+                  {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground">
                   {stat.label}

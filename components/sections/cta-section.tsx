@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Calendar, LucideIcon } from "lucide-react";
-import * as React from "react";
+import { ArrowRight, Calendar, CheckCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
